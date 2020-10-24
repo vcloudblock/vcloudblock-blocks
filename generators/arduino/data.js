@@ -18,15 +18,22 @@
  */
 'use strict';
 
-goog.provide('Blockly.Arduino.event');
+goog.provide('Blockly.Arduino.data');
 
 goog.require('Blockly.Arduino');
 
-
-Blockly.Arduino['event_whenarduinobegin'] = function(block) {
-  Blockly.Arduino.includes_["arduino"] = "#include <Arduino.h>";
-
-  var code = "";
-  return code;
+Blockly.Arduino['data_setvariableto'] = function (block) {
+  var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE',
+    Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
+  var varName = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VARIABLE'),
+    Blockly.Variables.NAME_TYPE);
+  return varName + ' = ' + argument0 + ';\n';
 };
 
+Blockly.Arduino['data_changevariableby'] = function (block) {
+  var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE',
+    Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
+  var varName = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VARIABLE'),
+    Blockly.Variables.NAME_TYPE);
+  return varName + ' += ' + argument0 + ';\n';
+};

@@ -18,15 +18,25 @@
  */
 'use strict';
 
-goog.provide('Blockly.Arduino.event');
+goog.provide('Blockly.Arduino.math');
 
 goog.require('Blockly.Arduino');
 
 
-Blockly.Arduino['event_whenarduinobegin'] = function(block) {
-  Blockly.Arduino.includes_["arduino"] = "#include <Arduino.h>";
-
-  var code = "";
-  return code;
+Blockly.Arduino['math_number'] = function (block) {
+  console.log('math_number');
+  // Numeric value.
+  var code = parseFloat(block.getFieldValue('NUM'));
+  if (isNaN(code)) {
+    code = 0;
+  }
+  // -4.abs() returns -4 in Dart due to strange order of operation choices.
+  // -4 is actually an operator and a number.  Reflect this in the order.
+  var order = code < 0 ?
+    Blockly.Arduino.ORDER_UNARY_PREFIX : Blockly.Arduino.ORDER_ATOMIC;
+  return [code, order];
 };
 
+Blockly.Arduino['math_angle'] = Blockly.Arduino['math_number'];
+Blockly.Arduino['math_positive_number'] = Blockly.Arduino['math_number'];
+Blockly.Arduino['math_whole_number'] = Blockly.Arduino['math_number'];

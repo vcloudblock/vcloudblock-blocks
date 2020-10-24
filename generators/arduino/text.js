@@ -18,15 +18,14 @@
  */
 'use strict';
 
-goog.provide('Blockly.Arduino.event');
+goog.provide('Blockly.Arduino.texts');
 
 goog.require('Blockly.Arduino');
 
 
-Blockly.Arduino['event_whenarduinobegin'] = function(block) {
-  Blockly.Arduino.includes_["arduino"] = "#include <Arduino.h>";
-
-  var code = "";
-  return code;
+Blockly.Arduino['text'] = function (block) {
+  console.log('text');
+  // Text value.
+  var code = Blockly.Arduino.quote_(block.getFieldValue('TEXT'));
+  return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
-
