@@ -24,7 +24,6 @@ goog.require('Blockly.Arduino');
 
 
 Blockly.Arduino['math_number'] = function (block) {
-  console.log('math_number');
   // Numeric value.
   var code = parseFloat(block.getFieldValue('NUM'));
   if (isNaN(code)) {

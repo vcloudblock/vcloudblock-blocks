@@ -24,11 +24,6 @@ goog.require('Blockly.Arduino');
 
 
 Blockly.Arduino['control_wait'] = function (block) {
-  Blockly.Arduino.includes_["control_wait"] = "#include <time.h>";
-  Blockly.Arduino.definitions_["control_wait"] = "Time t;";
-  Blockly.Arduino.setups_["control_wait"] = "t.init();";
-  Blockly.Arduino.loops_["control_wait"] = "t.read();";
-
   var arg0 = Blockly.Arduino.valueToCode(block, 'DURATION',
     Blockly.Arduino.ORDER_UNARY_POSTFIX);
   var code = "delay(" + arg0 + " * 1000" + ");\n";
