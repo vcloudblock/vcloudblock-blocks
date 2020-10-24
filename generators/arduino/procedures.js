@@ -44,6 +44,7 @@ Blockly.Arduino['procedures_call'] = function (block) {
   funcName = funcName.replace(/\%n/g, 'N')
   funcName = funcName.replace(/\%s/g, 'S')
   funcName = funcName.replace(/\%b/g, 'B')
+  funcName = Blockly.Arduino.variableDB_.getName(funcName, Blockly.Procedures.NAME_TYPE);
 
   var argCode = [];
   for (var x = 0; x < block.inputList.length; x++) {
@@ -72,54 +73,42 @@ Blockly.Arduino['procedures_prototype'] = function (block) {
   funcName = funcName.replace(/ /g,'_');
   for (var i = 0; i < argName.length; i++) {
     var ch = funcName.charAt(funcName.indexOf('\%') + 1)
+    var safeArgName = Blockly.Arduino.variableDB_.getName(argName[i], Blockly.Procedures.NAME_TYPE);
+    Blockly.Arduino.customFunctionsArgName_[argName[i]] = safeArgName;
 
     if (ch=== 'n') {
       funcName = funcName.replace('\%n', 'N')
-      argCode.push('float ' + argName[i]);
+      argCode.push('float ' + safeArgName);
     }
     else if (ch === 's') {
       funcName = funcName.replace('\%s', 'S')
-      argCode.push('String ' + argName[i]);
+      argCode.push('String ' + safeArgName);
     }
     else {
       funcName = funcName.replace('\%b', 'B')
-      argCode.push('boolean ' + argName[i]);
+      argCode.push('boolean ' + safeArgName);
     }
   }
+  funcName = Blockly.Arduino.variableDB_.getName(funcName, Blockly.Procedures.NAME_TYPE);
 
-  var code = 'void ' + funcName + ' (' + argCode.join(', ') + ')'
+  var code = 'void ' + funcName + '(' + argCode.join(', ') + ')'
   return code;
 }
 
-
 Blockly.Arduino['argument_reporter_boolean'] = function (block) {
-  var code = block.getFieldValue('VALUE');
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  var argName = block.getFieldValue('VALUE');
+  var safeArgName = Blockly.Arduino.customFunctionsArgName_[argName];
+  return [safeArgName, Blockly.Arduino.ORDER_ATOMIC];
 }
 
 Blockly.Arduino['argument_reporter_number'] = function (block) {
-  var code = block.getFieldValue('VALUE');
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  var argName = block.getFieldValue('VALUE');
+  var safeArgName = Blockly.Arduino.customFunctionsArgName_[argName];
+  return [safeArgName, Blockly.Arduino.ORDER_ATOMIC];
 }
 
 Blockly.Arduino['argument_reporter_string'] = function (block) {
-  var code = block.getFieldValue('VALUE');
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
-}
-
-
-Blockly.Arduino['procedures_declaration'] = function (block) {
-  console.log('procedures_declaration');
-}
-
-Blockly.Arduino['argument_editor_boolean'] = function (block) {
-  console.log('argument_editor_boolean');
-}
-
-Blockly.Arduino['argument_editor_number'] = function (block) {
-  console.log('argument_editor_number');
-}
-
-Blockly.Arduino['argument_editor_string'] = function (block) {
-  console.log('argument_editor_string');
+  var argName = block.getFieldValue('VALUE');
+  var safeArgName = Blockly.Arduino.customFunctionsArgName_[argName];
+  return [safeArgName, Blockly.Arduino.ORDER_ATOMIC];
 }
