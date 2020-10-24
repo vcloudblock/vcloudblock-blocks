@@ -112,6 +112,45 @@ Blockly.Arduino['operator_not'] = function(block) {
   return [code, order];
 };
 
+Blockly.Arduino['operator_join'] = function (block) {
+  var order = Blockly.Arduino.ORDER_UNARY_PREFIX;
+  var arg0 = Blockly.Arduino.valueToCode(block, 'STRING1', order) || '\'\'';
+  var arg1 = Blockly.Arduino.valueToCode(block, 'STRING2', order) || '\'\'';
+  var code = 'String(' + arg0 + ') + String(' + arg1 + ')';
+  return [code, Blockly.Arduino.ORDER_ADDITIVE];
+}
+
+Blockly.Arduino['operator_letter_of'] = function (block) {
+  var order = Blockly.Arduino.ORDER_UNARY_PREFIX;
+  var arg0 = Blockly.Arduino.valueToCode(block, 'STRING', order) || '\'\'';
+  var arg1 = Blockly.Arduino.valueToCode(block, 'LETTER', order) || '0';
+
+  // Arg is a number
+  if (parseFloat(arg1) == arg1) {
+    arg1 = arg1 - 1;
+  } else {
+    arg1 = arg1 + ' - 1';
+  }
+
+  var code = 'String(' + arg0 + ').charAt(' + arg1 + ')';
+  return [code, Blockly.Arduino.ORDER_NONE];
+}
+
+Blockly.Arduino['operator_length'] = function (block) {
+  var order = Blockly.Arduino.ORDER_UNARY_PREFIX;
+  var arg0 = Blockly.Arduino.valueToCode(block, 'STRING', order) || '\'\'';
+  var code = 'String(' + arg0 + ').length()';
+  return [code, Blockly.Arduino.ORDER_NONE];
+}
+
+Blockly.Arduino['operator_contains'] = function (block) {
+  var order = Blockly.Arduino.ORDER_UNARY_PREFIX;
+  var arg0 = Blockly.Arduino.valueToCode(block, 'STRING1', order) || '\'\'';
+  var arg1 = Blockly.Arduino.valueToCode(block, 'STRING2', order) || '0';
+  var code = 'String(' + arg0 + ').indexof(String(' + arg1 + '))';
+  return [code, Blockly.Arduino.ORDER_NONE];
+}
+
 Blockly.Arduino['operator_mod'] = function (block) {
   var order = Blockly.Arduino.ORDER_MULTIPLICATIVE;
   var arg0 = Blockly.Arduino.valueToCode(block, 'NUM1', order) || '0';
@@ -124,7 +163,61 @@ Blockly.Arduino['operator_round'] = function (block) {
   var order = Blockly.Arduino.ORDER_UNARY_POSTFIX;
   var arg0 = Blockly.Arduino.valueToCode(block, 'NUM', order) || '0';
   var code = 'round(' + arg0 + ')';
-  return [code, order];
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-// todo 14个数学函数运算，
+Blockly.Arduino['operator_mathop'] = function (block) {
+  var order = Blockly.Arduino.ORDER_UNARY_POSTFIX;
+  var mode = this.getFieldValue('OPERATOR');
+  var arg0 = Blockly.Arduino.valueToCode(block, 'NUM', order) || '0';
+  var code = '';
+  order = Blockly.Arduino.ORDER_NONE;
+  switch (mode) {
+    case 'abs':
+      code = 'abs(' + arg0 + ')';
+      break;
+    case 'floor':
+      code = 'floor(' + arg0 + ')';
+      break;
+    case 'ceiling':
+      code = 'ceiling(' + arg0 + ')';
+      break;
+    case 'sqrt':
+      code = 'sqrt(' + arg0 + ')';
+      break;
+    case 'sin':
+      code = 'sin(' + arg0 + ' / 180.0 * PI)';
+      break;
+    case 'cos':
+      code = 'cos(' + arg0 + ' / 180.0 * PI)';
+      break;
+    case 'tan':
+      code = 'tan(' + arg0 + ' / 180.0 * PI)';
+      break;
+    case 'asin':
+      code = 'asin(' + arg0 + ') / PI * 180';
+      order = Blockly.Arduino.ORDER_MULTIPLICATIVE;
+      break;
+    case 'acos':
+      code = 'acos(' + arg0 + ') / PI * 180';
+      order = Blockly.Arduino.ORDER_MULTIPLICATIVE;
+      break;
+    case 'atan':
+      code = 'atan(' + arg0 + ') / PI * 180';
+      order = Blockly.Arduino.ORDER_MULTIPLICATIVE;
+      break;
+    case 'ln':
+      code = 'log(' + arg0 + ')';
+      break;
+    case 'log':
+      code = 'log10(' + arg0 + ')';
+      break;
+    case 'e ^':
+      code = 'exp(' + arg0 + ')';
+      break;
+    case '10 ^':
+      code = 'pow(10, ' + arg0 + ')';
+      break;
+  }
+  return [code, order];
+};

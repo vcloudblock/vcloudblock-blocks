@@ -64,7 +64,6 @@ Blockly.Arduino['control_if'] = function (block) {
   return code;
 };
 
-
 Blockly.Arduino['control_if_else'] = function (block) {
   var argument = Blockly.Arduino.valueToCode(block, 'CONDITION',
     Blockly.Arduino.ORDER_NONE) || 'false';
@@ -81,7 +80,6 @@ Blockly.Arduino['control_if_else'] = function (block) {
   return code;
 };
 
-
 Blockly.Arduino['control_wait_until'] = function (block) {
   var argument = Blockly.Arduino.valueToCode(block, 'CONDITION',
     Blockly.Arduino.ORDER_UNARY_POSTFIX) || 'false';
@@ -89,7 +87,6 @@ Blockly.Arduino['control_wait_until'] = function (block) {
   code += Blockly.Arduino.INDENT + "_loop();\n}\n";
   return code;
 };
-
 
 Blockly.Arduino['control_repeat_until'] = function (block) {
   var argument = Blockly.Arduino.valueToCode(block, 'CONDITION',
