@@ -22,18 +22,35 @@ goog.provide('Blockly.Arduino.data');
 
 goog.require('Blockly.Arduino');
 
+
+Blockly.Arduino['data_variable'] = function (block) {
+  var varName = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VARIABLE'),
+    Blockly.Variables.NAME_TYPE);
+  return [varName, Blockly.Arduino.ORDER_ATOMIC];
+};
+
 Blockly.Arduino['data_setvariableto'] = function (block) {
-  var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE',
+  var arg0 = Blockly.Arduino.valueToCode(block, 'VALUE',
     Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
   var varName = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VARIABLE'),
     Blockly.Variables.NAME_TYPE);
-  return varName + ' = ' + argument0 + ';\n';
+
+  // Arg is a number
+  if (parseFloat(arg0.slice(1, -1)) == arg0.slice(1, -1)) {
+    arg0 = parseFloat(arg0.slice(1, -1)).toString();
+  }
+  return varName + ' = ' + arg0 + ';\n';
 };
 
 Blockly.Arduino['data_changevariableby'] = function (block) {
-  var argument0 = Blockly.Arduino.valueToCode(block, 'VALUE',
+  var arg0 = Blockly.Arduino.valueToCode(block, 'VALUE',
     Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
   var varName = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VARIABLE'),
     Blockly.Variables.NAME_TYPE);
-  return varName + ' += ' + argument0 + ';\n';
+
+  // Arg is a number
+  if (parseFloat(arg0.slice(1, -1)) == arg0.slice(1, -1)) {
+    arg0 = parseFloat(arg0.slice(1, -1)).toString();
+  }
+  return varName + ' += ' + arg0 + ';\n';
 };
