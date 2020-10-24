@@ -113,6 +113,9 @@ Blockly.Arduino.init = function (workspace) {
   Blockly.Arduino.definitions_ = Object.create(null);
   // Create a dictionary of custom founction definitions to be printed after definitions.
   Blockly.Arduino.customFunctions_ = Object.create(null);
+  // Create a dictionary of custom args safe name. Avoid generating multiple
+  // security names with different suffixes due to multiple uses of getName.
+  Blockly.Arduino.customFunctionsArgName_ = Object.create(null);
   // Create a dictionary of functions which should called in setup() to be
   // printed in setup().
   Blockly.Arduino.setups_ = Object.create(null);
@@ -208,6 +211,7 @@ Blockly.Arduino.finish = function (code) {
   delete Blockly.Arduino.definitions_;
   delete Blockly.Arduino.includes_;
   delete Blockly.Arduino.customFunctions_;
+  delete Blockly.Arduino.customFunctionsArgName_
   delete Blockly.Arduino.setups_;
   delete Blockly.Arduino.loop_;
   Blockly.Arduino.variableDB_.reset();
