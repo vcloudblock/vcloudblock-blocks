@@ -1154,6 +1154,26 @@ Blockly.Block.prototype.setDisabled = function(disabled) {
 };
 
 /**
+ * Get whether this block is enabled or not.
+ * @return {boolean} True if enabled.
+ */
+Blockly.Block.prototype.isEnabled = function() {
+  return !this.disabled;
+};
+
+/**
+ * Set whether the block is enabled or not.
+ * @param {boolean} enabled True if enabled.
+ */
+Blockly.Block.prototype.setEnabled = function(enabled) {
+  if (this.isEnabled() != enabled) {
+    Blockly.Events.fire(new Blockly.Events.BlockChange(
+        this, 'disabled', null, this.disabled, !enabled));
+    this.disabled = !enabled;
+  }
+};
+
+/**
  * Get whether the block is disabled or not due to parents.
  * The block's own disabled property is not considered.
  * @return {boolean} True if disabled.

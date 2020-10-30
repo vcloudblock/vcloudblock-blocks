@@ -145,10 +145,10 @@ Blockly.FieldDropdown.prototype.init = function() {
       'y': 0,
       'width': this.size_.width,
       'height': this.size_.height,
-      'stroke': this.sourceBlock_.getColourTertiary(),
-      'fill': this.sourceBlock_.getColour(),
+      'stroke': this.sourceBlock_.isEnabled() ? this.sourceBlock_.getColourTertiary() : '#FFFFFF',
+      'fill': this.sourceBlock_.isEnabled() ? this.sourceBlock_.getColour() : 'url(#' + this.sourceBlock_.workspace.options.disabledPatternId + ')',
       'class': 'blocklyBlockBackground',
-      'fill-opacity': 1
+      'fill-opacity': this.sourceBlock_.isEnabled() ? 1 : 0.5
     }, null);
     this.fieldGroup_.insertBefore(this.box_, this.textElement_);
   }
