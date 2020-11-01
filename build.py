@@ -472,7 +472,13 @@ class Gen_compressed(threading.Thread):
         print("FATAL ERROR: Compiler did not return compiledCode.")
         sys.exit(1)
 
-      code = HEADER + "\n" + json_data["compiledCode"]
+      compiledCode = json_data["compiledCode"]
+
+      if (compiledCode.find("new Blockly.Generator") != -1):
+        code = HEADER + "\nlet Blockly = require(\'scratch-blocks\');\n\n" + compiledCode
+      else:
+        code = HEADER + "\n" + compiledCode
+
       code = code.replace(remove, "")
 
       # Trim down Google's (and only Google's) Apache licences.
