@@ -537,12 +537,6 @@ Blockly.BlockSvg.prototype.updateColour = function() {
   // Render opacity
   this.svgPath_.setAttribute('fill-opacity', this.getOpacity());
 
-  if (!this.isEnabled()) {
-    this.svgPath_.setAttribute('stroke', '#cc0');
-    this.svgPath_.setAttribute('fill', 'url(#' + this.workspace.options.disabledPatternId + ')');
-    this.svgPath_.setAttribute('fill-opacity', 0.5);
-  }
-
   // Update colours of input shapes.
   for (var i = 0, input; input = this.inputList[i]; i++) {
     if (input.outlinePath) {

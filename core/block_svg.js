@@ -867,7 +867,16 @@ Blockly.BlockSvg.prototype.dispose = function(healStack, animate) {
  * Enable or disable a block.
  */
 Blockly.BlockSvg.prototype.updateDisabled = function() {
-  // not supported
+  var children = this.getChildren(false);
+  this.updateColour();
+  if (this.isCollapsed()) {
+    return;
+  }
+  for (var i = 0, child; (child = children[i]); i++) {
+    if (child.rendered) {
+      child.updateDisabled();
+    }
+  }
 };
 
 /**
@@ -999,6 +1008,19 @@ Blockly.BlockSvg.prototype.setMutator = function(mutator) {
     mutator.block_ = this;
     this.mutator = mutator;
     mutator.createIcon();
+  }
+};
+
+/**
+ * Set whether the block is enabled or not.
+ * @param {boolean} enabled True if enabled.
+ */
+Blockly.BlockSvg.prototype.setEnabled = function(enabled) {
+  if (this.isEnabled() != enabled) {
+    Blockly.BlockSvg.superClass_.setEnabled.call(this, enabled);
+    if (this.rendered && !this.getInheritedDisabled()) {
+      this.updateDisabled();
+    }
   }
 };
 

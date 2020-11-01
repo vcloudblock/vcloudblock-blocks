@@ -1146,11 +1146,7 @@ Blockly.Block.prototype.getInputsInline = function() {
  * @param {boolean} disabled True if disabled.
  */
 Blockly.Block.prototype.setDisabled = function(disabled) {
-  if (this.disabled != disabled) {
-    Blockly.Events.fire(new Blockly.Events.BlockChange(
-        this, 'disabled', null, this.disabled, disabled));
-    this.disabled = disabled;
-  }
+  this.setEnabled(!disabled);
 };
 
 /**
@@ -1168,8 +1164,14 @@ Blockly.Block.prototype.isEnabled = function() {
 Blockly.Block.prototype.setEnabled = function(enabled) {
   if (this.isEnabled() != enabled) {
     Blockly.Events.fire(new Blockly.Events.BlockChange(
-        this, 'disabled', null, this.disabled, !enabled));
+      this, 'disabled', null, this.disabled, !enabled));
     this.disabled = !enabled;
+  }
+  if (!enabled) {
+    this.colour_ = 'url(#' + this.workspace.options.disabledPatternId + ')';
+    this.colourSecondary_ = 'url(#' + this.workspace.options.disabledPatternId + ')';
+    this.colourTertiary_ = 'url(#' + this.workspace.options.disabledPatternId + ')';
+    this.setOpacity(0.5);
   }
 };
 
