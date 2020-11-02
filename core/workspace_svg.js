@@ -34,6 +34,7 @@ goog.require('Blockly.constants');
 goog.require('Blockly.DataCategory');
 goog.require('Blockly.DropDownDiv');
 goog.require('Blockly.Events.BlockCreate');
+goog.require('Blockly.Events.UpdateToolboxFinish');
 goog.require('Blockly.Gesture');
 goog.require('Blockly.Grid');
 goog.require('Blockly.Options');
@@ -1568,6 +1569,7 @@ Blockly.WorkspaceSvg.prototype.updateToolbox = function(tree) {
     this.toolbox_.populate_(tree);
     this.toolbox_.position();
     this.updateWorkspaceDisabled();
+    Blockly.Events.fire(new Blockly.Events.UpdateToolboxFinish(this));
   } else {
     if (!this.flyout_) {
       throw 'Existing toolbox has categories.  Can\'t change mode.';
