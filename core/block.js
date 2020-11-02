@@ -793,24 +793,24 @@ Blockly.Block.prototype.setTooltip = function(newTip) {
  * Get the colour of a block.
  * @return {string} #RRGGBB string.
  */
-Blockly.Block.prototype.getColour = function() {
-  return this.colour_;
+Blockly.Block.prototype.getColour = function () {
+  return this.isEnabled() ? this.colour_ : 'url(#' + this.workspace.options.disabledPatternId + ')';
 };
 
 /**
  * Get the secondary colour of a block.
  * @return {string} #RRGGBB string.
  */
-Blockly.Block.prototype.getColourSecondary = function() {
-  return this.colourSecondary_;
+Blockly.Block.prototype.getColourSecondary = function () {
+  return this.isEnabled() ? this.colourSecondary_ : 'url(#' + this.workspace.options.disabledPatternId + ')';
 };
 
 /**
  * Get the tertiary colour of a block.
  * @return {string} #RRGGBB string.
  */
-Blockly.Block.prototype.getColourTertiary = function() {
-  return this.colourTertiary_;
+Blockly.Block.prototype.getColourTertiary = function () {
+  return this.isEnabled() ? this.colourTertiary_ : 'url(#' + this.workspace.options.disabledPatternId + ')';
 };
 
 /**
@@ -1166,12 +1166,12 @@ Blockly.Block.prototype.setEnabled = function(enabled) {
     Blockly.Events.fire(new Blockly.Events.BlockChange(
       this, 'disabled', null, this.disabled, !enabled));
     this.disabled = !enabled;
-  }
-  if (!enabled) {
-    this.colour_ = 'url(#' + this.workspace.options.disabledPatternId + ')';
-    this.colourSecondary_ = 'url(#' + this.workspace.options.disabledPatternId + ')';
-    this.colourTertiary_ = 'url(#' + this.workspace.options.disabledPatternId + ')';
-    this.setOpacity(0.5);
+
+    for (var i = 0, input; input = this.inputList[i]; i++) {
+      for (var j = 0, field; field = input.fieldRow[j]; j++) {
+        field.updateColour();
+      }
+    }
   }
 };
 

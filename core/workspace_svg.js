@@ -1567,6 +1567,7 @@ Blockly.WorkspaceSvg.prototype.updateToolbox = function(tree) {
     this.options.languageTree = tree;
     this.toolbox_.populate_(tree);
     this.toolbox_.position();
+    this.updateWorkspaceDisabled();
   } else {
     if (!this.flyout_) {
       throw 'Existing toolbox has categories.  Can\'t change mode.';
@@ -1575,6 +1576,31 @@ Blockly.WorkspaceSvg.prototype.updateToolbox = function(tree) {
     this.flyout_.show(tree.childNodes);
   }
 };
+
+/**
+ * Modify the block tree in the workspace by attribute of disabled.
+ */
+Blockly.WorkspaceSvg.prototype.updateWorkspaceDisabled = function () {
+  var allBlock = this.getAllBlocks();
+  var flyoutItems = this.getFlyout().getFlyoutItems();
+
+  allBlock.forEach(block => {
+    var matchedBlock = flyoutItems.find(function (item) {
+      return item.type === block.type;
+    });
+    if (matchedBlock) {
+      if (matchedBlock.disabled) {
+        block.setEnabled(false);
+      } else {
+        block.setEnabled(true);
+      }
+    } else {
+      if ((block.type != 'math_number') || ((block.type != 'text'))) {
+        block.setEnabled(true);
+      }
+    }
+  });
+}
 
 /**
  * Mark this workspace as the currently focused main workspace.

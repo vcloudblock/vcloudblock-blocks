@@ -117,6 +117,13 @@ Blockly.Flyout = function(workspaceOptions) {
   this.listeners_ = [];
 
   /**
+   * List of blocks.
+   * @type {!Array.<!Blockly.Block>}
+   * @private
+   */
+  this.blockContents_ = [];
+
+  /**
    * List of blocks that should always be disabled.
    * @type {!Array.<!Blockly.Block>}
    * @private
@@ -389,6 +396,16 @@ Blockly.Flyout.prototype.getWorkspace = function() {
 };
 
 /**
+ * Get blocks of the flyout.
+ * @return {!Array.<!Blockly.Block>} The blocks list of the flyout.
+ * @package
+ */
+Blockly.Flyout.prototype.getFlyoutItems = function () {
+  return this.blockContents_;
+}
+
+
+/**
  * Is the flyout visible?
  * @return {boolean} True if visible.
  */
@@ -476,6 +493,7 @@ Blockly.Flyout.prototype.show = function(xmlList) {
   var contents = [];
   var gaps = [];
   this.permanentlyDisabled_.length = 0;
+  this.blockContents_.length = 0;
   for (var i = 0, xml; xml = xmlList[i]; i++) {
     // Handle dynamic categories, represented by a name instead of a list of XML.
     // Look up the correct category generation function and call that to get a
@@ -502,6 +520,8 @@ Blockly.Flyout.prototype.show = function(xmlList) {
           // Do not enable these blocks as a result of capacity filtering.
           this.permanentlyDisabled_.push(curBlock);
         }
+        this.blockContents_.push(curBlock);
+
         contents.push({type: 'block', block: curBlock});
         var gap = parseInt(xml.getAttribute('gap'), 10);
         gaps.push(isNaN(gap) ? default_gap : gap);

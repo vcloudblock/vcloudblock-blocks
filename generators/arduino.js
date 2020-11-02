@@ -270,6 +270,11 @@ Blockly.Arduino.scrub_ = function(block, code) {
         return '';
   }
 
+  // If this block is disabled don't handle it.
+  if (!block.isEnabled) {
+        return '';
+  }
+
   var codeWithIndent = code;
   // At this step if block is not surround by a parent and it is not empty,
   // mean's it is in setup() function or it is custom function, add indent
