@@ -21,12 +21,11 @@ Blockly.Blocks['event_whenarduinobegin'] = {
     this.jsonInit({
       "id": "event_whenarduinobegin",
       "message0": "When Arduino begin",
-      "category": Blockly.Categories.event,
-      "colour": Blockly.Colours.arduino.primary,
-      "colourSecondary": Blockly.Colours.arduino.secondary,
-      "colourTertiary": Blockly.Colours.arduino.tertiary,
       "nextStatement": null,
-      "extensions": ["scratch_extension"]
+      "category": Blockly.Categories.event,
+      "colour": Blockly.Colours.event.primary,
+      "colourSecondary": Blockly.Colours.event.secondary,
+      "colourTertiary": Blockly.Colours.event.tertiary
     });
   }
 };
