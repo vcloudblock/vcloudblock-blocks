@@ -852,7 +852,7 @@ Blockly.Block.prototype.makeColour_ = function(colour) {
   var hue = Number(colour);
   if (!isNaN(hue)) {
     return Blockly.hueToRgb(hue);
-  } else if (goog.isString(colour) && colour.match(/^#[0-9a-fA-F]{6}$/)) {
+  } else if (goog.isString(colour)) {
     return colour;
   } else {
     throw 'Invalid colour: ' + colour;
@@ -1153,8 +1153,12 @@ Blockly.Block.prototype.setDisabled = function(disabled) {
  * Get whether this block is enabled or not.
  * @return {boolean} True if enabled.
  */
-Blockly.Block.prototype.isEnabled = function() {
-  return !this.disabled;
+Blockly.Block.prototype.isEnabled = function () {
+  if (this.getSurroundParent()) {
+    return this.getSurroundParent().isEnabled();
+  } else {
+    return !this.disabled;
+  }
 };
 
 /**
