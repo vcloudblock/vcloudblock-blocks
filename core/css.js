@@ -471,8 +471,8 @@ Blockly.Css.CONTENT = [
 
   '.blocklyNonEditableText>text {',
     'pointer-events: none;',
+    'fill: $fff;',
   '}',
-  '.blocklyNonEditableText>text,',
   '.blocklyEditableText>text {',
     'fill: $colour_text;',
   '}',

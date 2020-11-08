@@ -773,6 +773,7 @@ Blockly.Field.prototype.updateColour = function () {
     this.box_.setAttribute('fill', this.sourceBlock_.getColour());
     this.box_.setAttribute('fill-opacity', this.sourceBlock_.getOpacity());
   }
+  this.updateEditable();
 }
 
 /**
