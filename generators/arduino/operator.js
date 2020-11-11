@@ -168,7 +168,7 @@ Blockly.Arduino['operator_round'] = function (block) {
 
 Blockly.Arduino['operator_mathop'] = function (block) {
   var order = Blockly.Arduino.ORDER_UNARY_POSTFIX;
-  var mode = this.getFieldValue('OPERATOR');
+  var mode = block.getFieldValue('OPERATOR');
   var arg0 = Blockly.Arduino.valueToCode(block, 'NUM', order) || '0';
   var code = '';
   order = Blockly.Arduino.ORDER_NONE;
