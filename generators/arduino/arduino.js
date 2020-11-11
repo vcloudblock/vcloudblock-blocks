@@ -11,7 +11,7 @@ goog.require('Blockly.Arduino');
 Blockly.Arduino['pin_setPinMode'] = function (block) {
   var arg0 = block.getFieldValue('PIN') || '0';
   var arg1 = block.getFieldValue('MODE') || 'INPUT';
-  var code = "pinMode(" + arg0 + ", " + arg1 + ")\n";
+  var code = "pinMode(" + arg0 + ", " + arg1 + ");\n";
   return code;
 };
 
