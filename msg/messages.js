@@ -33,9 +33,6 @@ goog.provide('Blockly.Msg.en');
 
 goog.require('Blockly.Msg');
 
-// Arduino blocks
-Blockly.Msg.WHEN_ARDUINO_BEGIN = 'When Arduino begin';
-
 // Control blocks
 Blockly.Msg.CONTROL_FOREVER = 'forever';
 Blockly.Msg.CONTROL_REPEAT = 'repeat %1';
@@ -80,6 +77,7 @@ Blockly.Msg.DATA_INDEX_LAST = 'last';
 Blockly.Msg.DATA_INDEX_RANDOM = 'random';
 
 // Event blocks
+Blockly.Msg.EVENT_WHENARDUINOBEGIN = 'when Arduino begin';
 Blockly.Msg.EVENT_WHENFLAGCLICKED = 'when %1 clicked';
 Blockly.Msg.EVENT_WHENTHISSPRITECLICKED = 'when this sprite clicked';
 Blockly.Msg.EVENT_WHENSTAGECLICKED = 'when stage clicked';

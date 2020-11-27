@@ -9,7 +9,6 @@ goog.require('Blockly.ScratchMsgs');
 
 Blockly.ScratchMsgs.locales["en"] =
 {
-    "WHEN_ARDUINO_BEGIN": "When Arduino begin",
     "CONTROL_FOREVER": "forever",
     "CONTROL_REPEAT": "repeat %1",
     "CONTROL_IF": "if %1 then",
@@ -49,6 +48,7 @@ Blockly.ScratchMsgs.locales["en"] =
     "DATA_INDEX_ALL": "all",
     "DATA_INDEX_LAST": "last",
     "DATA_INDEX_RANDOM": "random",
+    "EVENT_WHENARDUINOBEGIN": "when Arduino begin",
     "EVENT_WHENFLAGCLICKED": "when %1 clicked",
     "EVENT_WHENTHISSPRITECLICKED": "when this sprite clicked",
     "EVENT_WHENSTAGECLICKED": "when stage clicked",
@@ -297,7 +297,6 @@ Blockly.ScratchMsgs.locales["en"] =
 
 Blockly.ScratchMsgs.locales["zh-cn"] =
 {
-    "WHEN_ARDUINO_BEGIN": "当Arduino启动",
     "CONTROL_FOREVER": "重复执行",
     "CONTROL_REPEAT": "重复执行 %1 次",
     "CONTROL_IF": "如果 %1 那么",
@@ -337,6 +336,7 @@ Blockly.ScratchMsgs.locales["zh-cn"] =
     "DATA_INDEX_ALL": "全部",
     "DATA_INDEX_LAST": "末尾",
     "DATA_INDEX_RANDOM": "随机",
+    "EVENT_WHENARDUINOBEGIN": "当Arduino启动",
     "EVENT_WHENFLAGCLICKED": "当 %1 被点击",
     "EVENT_WHENTHISSPRITECLICKED": "当角色被点击",
     "EVENT_WHENSTAGECLICKED": "当舞台被点击",

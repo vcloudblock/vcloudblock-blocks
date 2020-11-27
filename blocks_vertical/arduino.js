@@ -20,7 +20,7 @@ Blockly.Blocks['event_whenarduinobegin'] = {
   init: function () {
     this.jsonInit({
       "id": "event_whenarduinobegin",
-      "message0": Blockly.Msg.WHEN_ARDUINO_BEGIN,
+      "message0": Blockly.Msg.EVENT_WHENARDUINOBEGIN,
       "nextStatement": null,
       "category": Blockly.Categories.event,
       "colour": Blockly.Colours.event.primary,

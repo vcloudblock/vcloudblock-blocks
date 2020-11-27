@@ -1,5 +1,4 @@
 {
-    "WHEN_ARDUINO_BEGIN": "When Arduino begin",
     "CONTROL_FOREVER": "forever",
     "CONTROL_REPEAT": "repeat %1",
     "CONTROL_IF": "if %1 then",
@@ -39,6 +38,7 @@
     "DATA_INDEX_ALL": "all",
     "DATA_INDEX_LAST": "last",
     "DATA_INDEX_RANDOM": "random",
+    "EVENT_WHENARDUINOBEGIN": "when Arduino begin",
     "EVENT_WHENFLAGCLICKED": "when %1 clicked",
     "EVENT_WHENTHISSPRITECLICKED": "when this sprite clicked",
     "EVENT_WHENSTAGECLICKED": "when stage clicked",
