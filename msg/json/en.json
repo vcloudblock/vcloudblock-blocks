@@ -1,4 +1,5 @@
 {
+    "WHEN_ARDUINO_BEGIN": "When Arduino begin",
     "CONTROL_FOREVER": "forever",
     "CONTROL_REPEAT": "repeat %1",
     "CONTROL_IF": "if %1 then",

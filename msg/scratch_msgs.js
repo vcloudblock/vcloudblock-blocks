@@ -9,6 +9,7 @@ goog.require('Blockly.ScratchMsgs');
 
 Blockly.ScratchMsgs.locales["en"] =
 {
+    "WHEN_ARDUINO_BEGIN": "When Arduino begin",
     "CONTROL_FOREVER": "forever",
     "CONTROL_REPEAT": "repeat %1",
     "CONTROL_IF": "if %1 then",
@@ -296,6 +297,7 @@ Blockly.ScratchMsgs.locales["en"] =
 
 Blockly.ScratchMsgs.locales["zh-cn"] =
 {
+    "WHEN_ARDUINO_BEGIN": "当Arduino启动",
     "CONTROL_FOREVER": "重复执行",
     "CONTROL_REPEAT": "重复执行 %1 次",
     "CONTROL_IF": "如果 %1 那么",

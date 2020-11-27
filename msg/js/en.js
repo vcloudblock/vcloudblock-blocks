@@ -5,6 +5,7 @@
 goog.provide('Blockly.Msg.en');
 goog.require('Blockly.Msg');
 
+Blockly.Msg["WHEN_ARDUINO_BEGIN"] = "When Arduino begin";
 Blockly.Msg["CONTROL_FOREVER"] = "forever";
 Blockly.Msg["CONTROL_REPEAT"] = "repeat %1";
 Blockly.Msg["CONTROL_IF"] = "if %1 then";

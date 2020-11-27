@@ -33,6 +33,9 @@ goog.provide('Blockly.Msg.en');
 
 goog.require('Blockly.Msg');
 
+// Arduino blocks
+Blockly.Msg.WHEN_ARDUINO_BEGIN = 'When Arduino begin';
+
 // Control blocks
 Blockly.Msg.CONTROL_FOREVER = 'forever';
 Blockly.Msg.CONTROL_REPEAT = 'repeat %1';
