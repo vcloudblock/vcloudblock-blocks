@@ -28,7 +28,7 @@ const locales = require('scratch-l10n').default;
 
 // Globals
 const PATH_OUTPUT = path.resolve(__dirname, '../msg');
-const PROJECT = 'scratch-editor'
+const PROJECT = 'scratch-editor-2'
 const RESOURCE = 'blocks';
 const MODE = {mode: 'reviewed'};
 
