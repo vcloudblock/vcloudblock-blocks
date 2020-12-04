@@ -30,8 +30,7 @@ const locales = require('scratch-l10n').default;
 const PATH_OUTPUT = path.resolve(__dirname, '../msg');
 const PROJECT = 'scratch-editor-2'
 const RESOURCE = 'blocks';
-// const MODE = {mode: 'reviewed'};
-const MODE = {mode: 'default'};
+const MODE = {mode: 'reviewed'};
 
 const TX = new transifex({
   project_slug: PROJECT,
