@@ -70,7 +70,7 @@ Blockly.Arduino['control_if_else'] = function (block) {
   var branch = Blockly.Arduino.statementToCode(block, 'SUBSTACK');
   branch = Blockly.Arduino.addLoopTrap(branch, block.id);
   var branch2 = Blockly.Arduino.statementToCode(block, 'SUBSTACK2');
-  branch2 = Blockly.Arduino.addLoopTrap(branch, block.id);
+  branch2 = Blockly.Arduino.addLoopTrap(branch2, block.id);
 
   var code = "if(" + argument + "){\n";
   code += branch;
