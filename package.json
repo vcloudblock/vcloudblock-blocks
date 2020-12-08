@@ -1,13 +1,13 @@
 {
-  "name": "scratch-blocks",
+  "name": "scratchhw-blocks",
   "version": "0.1.0",
-  "description": "Scratch Blocks is a library for building creative computing interfaces.",
+  "description": "Scratch Hardware Blocks is a library for building creative computing interfaces.",
   "author": "Massachusetts Institute of Technology",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/LLK/scratch-blocks#readme",
+  "homepage": "https://github.com/ScratchHW/scratch-blocks#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LLK/scratch-blocks.git"
+    "url": "https://github.com/ScratchHW/scratch-blocks.git"
   },
   "main": "./dist/vertical.js",
   "browser": "./shim/vertical.js",
@@ -42,7 +42,7 @@
     "graceful-fs": "4.1.11",
     "json": "9.0.4",
     "rimraf": "2.6.2",
-    "scratch-l10n": "^3.10.20200617135753",
+    "scratch-l10n": "https://github.com/ScratchHW/scratch-l10n",
     "selenium-webdriver": "^4.0.0-alpha.1",
     "transifex": "1.6.6",
     "travis-after-all": "1.4.4",
