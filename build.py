@@ -39,7 +39,7 @@ if sys.version_info[0] != 2:
   raise Exception("Blockly build only compatible with Python 2.x.\n"
                   "You are using: " + sys.version)
 
-import errno, glob, httplib, json, os, re, subprocess, threading, urllib, platform
+import errno, glob, httplib, json, os, re, subprocess, threading, urllib
 
 REMOTE_COMPILER = "remote"
 
@@ -354,7 +354,7 @@ class Gen_compressed(threading.Thread):
     # Build the final args array by prepending google-closure-compiler to
     # dash_args and dropping any falsy members
     # Use a flagfile into the closure compiler.To fix the compilation problems due to commands exceeding 8191 characters in Windows Environment.
-    if(platform.system() == "Windows"):
+    if(os.name == "nt"):
       tmp_data = " ".join(dash_args)
       tmp_data_list = list(tmp_data)
       n_pos = [i for i, x in enumerate(tmp_data_list) if x == "\\"]
@@ -368,11 +368,13 @@ class Gen_compressed(threading.Thread):
       temp_f.close()
 
       args = [closure_compiler, "--flagfile", f_name]
+
       proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
     else:
       args = []
       for group in [[CLOSURE_COMPILER_NPM], dash_args]:
         args.extend(filter(lambda item: item, group))
+
       proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
     (stdout, stderr) = proc.communicate()
@@ -624,7 +626,7 @@ if __name__ == "__main__":
 
     # Sanity check the local compiler
     test_args = [closure_compiler, os.path.join("build", "test_input.js")]
-    if(platform.system() == "Windows"):
+    if(os.name == "nt"):
       test_proc = subprocess.Popen(test_args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
     else:
       test_proc = subprocess.Popen(test_args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
