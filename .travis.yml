@@ -42,10 +42,3 @@ deploy:
   email: $NPM_EMAIL
   api_key: $NPM_TOKEN
   tag: $NPM_TAG
-- provider: script
-  on:
-    all_branches: true
-    condition: $TRAVIS_EVENT_TYPE != cron && ! $TRAVIS_BRANCH =~ ^greenkeeper/
-    tags: false # Don't push tags to gh-pages
-  skip_cleanup: true
-  script: npm run --silent deploy -- -x -r https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git

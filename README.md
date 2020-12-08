@@ -1,4 +1,6 @@
 # scratch-blocks
+![](https://img.shields.io/travis/ScratchHW/scratch-blocks)![](https://img.shields.io/github/license/ScratchHW/scratch-blocks?style=plastic)
+
 ## Instructions
 
 ```
