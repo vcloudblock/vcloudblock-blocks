@@ -338,56 +338,56 @@ class Gen_compressed(threading.Thread):
       self.report_stats(target_filename, json_data)
 
   def do_compile_local(self, params, target_filename):
-    filter_keys = ["use_closure_library"]
+      filter_keys = ["use_closure_library"]
 
-    # Drop arg if arg is js_file else add dashes
-    dash_params = []
-    for (arg, value) in params:
-      dash_params.append((value,) if arg == "js_file" else ("--" + arg, value))
+      # Drop arg if arg is js_file else add dashes
+      dash_params = []
+      for (arg, value) in params:
+        dash_params.append((value,) if arg == "js_file" else ("--" + arg, value))
 
-    # Flatten dash_params into dash_args if their keys are not in filter_keys
-    dash_args = []
-    for pair in dash_params:
-      if pair[0][2:] not in filter_keys:
-        dash_args.extend(pair)
+      # Flatten dash_params into dash_args if their keys are not in filter_keys
+      dash_args = []
+      for pair in dash_params:
+        if pair[0][2:] not in filter_keys:
+          dash_args.extend(pair)
 
-    # Build the final args array by prepending google-closure-compiler to
-    # dash_args and dropping any falsy members
-    # Use a flagfile into the closure compiler.To fix the compilation problems due to commands exceeding 8191 characters in Windows Environment.
-    if(os.name == "nt"):
-      tmp_data = " ".join(dash_args)
-      tmp_data_list = list(tmp_data)
-      n_pos = [i for i, x in enumerate(tmp_data_list) if x == "\\"]
-      for x in range(len(n_pos)):
-        tmp_data_list.insert(n_pos[len(n_pos) - x - 1], "\\")
-      tmp_data = "".join(tmp_data_list)
+      # Build the final args array by prepending CLOSURE_COMPILER_NPM to
+      # dash_args and dropping any falsy members
+      # Use a flagfile into the closure compiler.To fix the compilation problems due to commands exceeding 8191 characters in Windows Environment.
+      if(os.name == "nt"):
+        tmp_data = " ".join(dash_args)
+        tmp_data_list = list(tmp_data)
+        n_pos = [i for i, x in enumerate(tmp_data_list) if x == "\\"]
+        for x in range(len(n_pos)):
+          tmp_data_list.insert(n_pos[len(n_pos) - x - 1], "\\")
+        tmp_data = "".join(tmp_data_list)
 
-      f_name = target_filename + ".config"
-      temp_f = open(f_name, "w")
-      temp_f.write(tmp_data)
-      temp_f.close()
+        f_name = target_filename + ".config"
+        temp_f = open(f_name, "w")
+        temp_f.write(tmp_data)
+        temp_f.close()
 
-      args = [closure_compiler, "--flagfile", f_name]
+        args = [closure_compiler, "--flagfile", f_name]
 
-      proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
-    else:
-      args = []
-      for group in [[CLOSURE_COMPILER_NPM], dash_args]:
-        args.extend(filter(lambda item: item, group))
+        proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+      else:
+        args = []
+        for group in [[CLOSURE_COMPILER_NPM], dash_args]:
+          args.extend(filter(lambda item: item, group))
 
-      proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+          proc = subprocess.Popen(args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 
-    (stdout, stderr) = proc.communicate()
+      (stdout, stderr) = proc.communicate()
 
-    # Build the JSON response.
-    filesizes = [os.path.getsize(value) for (arg, value) in params if arg == "js_file"]
-    return dict(
-      compiledCode=stdout,
-      statistics=dict(
-        originalSize=reduce(lambda v, size: v + size, filesizes, 0),
-        compressedSize=len(stdout),
+      # Build the JSON response.
+      filesizes = [os.path.getsize(value) for (arg, value) in params if arg == "js_file"]
+      return dict(
+        compiledCode=stdout,
+        statistics=dict(
+          originalSize=reduce(lambda v, size: v + size, filesizes, 0),
+          compressedSize=len(stdout),
+        )
       )
-    )
 
   def do_compile_remote(self, params, target_filename):
       filter_keys = [
@@ -525,7 +525,6 @@ class Gen_compressed(threading.Thread):
         print("SUCCESS: " + target_filename)
         print("Size changed from %d KB to %d KB (%d%%)." % (
             original_kb, compressed_kb, ratio))
-        os.remove(target_filename + ".config")
       else:
         print("UNKNOWN ERROR")
 
