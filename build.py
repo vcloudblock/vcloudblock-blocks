@@ -525,6 +525,8 @@ class Gen_compressed(threading.Thread):
         print("SUCCESS: " + target_filename)
         print("Size changed from %d KB to %d KB (%d%%)." % (
             original_kb, compressed_kb, ratio))
+        if(os.name == "nt"):
+          os.remove(target_filename + ".config")
       else:
         print("UNKNOWN ERROR")
 
