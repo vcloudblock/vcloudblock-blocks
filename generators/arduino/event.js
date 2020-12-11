@@ -23,7 +23,7 @@ goog.provide('Blockly.Arduino.event');
 goog.require('Blockly.Arduino');
 
 
-Blockly.Arduino['event_whenarduinobegin'] = function(block) {
+Blockly.Arduino['event_whenarduinobegin'] = function() {
   Blockly.Arduino.includes_["arduino"] = "#include <Arduino.h>";
 
   var code = "";

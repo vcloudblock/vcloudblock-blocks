@@ -17,7 +17,7 @@ Blockly.Blocks['event_whenarduinobegin'] = {
    * Block for when arduino begin.
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "event_whenarduinobegin",
       "message0": Blockly.Msg.EVENT_WHENARDUINOBEGIN,
@@ -36,7 +36,7 @@ Blockly.Blocks['arduino_analog_in_option'] = {
    * enum of devices uses one pin
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_analog_in_option",
       "message0": "%1",
@@ -69,7 +69,7 @@ Blockly.Blocks['arduino_pwm_option'] = {
    * enum of devices uses one pin
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_pwm_option",
       "message0": "%1",
@@ -102,7 +102,7 @@ Blockly.Blocks['arduino_pin_mode_option'] = {
    * enum of devices uses one pin
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_pin_mode_option",
       "message0": "%1",
@@ -131,7 +131,7 @@ Blockly.Blocks['arduino_level_option'] = {
    * enum of devices uses one pin
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_level_option",
       "message0": "%1",
@@ -160,7 +160,7 @@ Blockly.Blocks['arduino_digital_write'] = {
    * digital write
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_digital_write",
       "message0": Blockly.Msg.ARDUINO_DIGITALWRITE,
@@ -189,7 +189,7 @@ Blockly.Blocks['arduino_pwm_write'] = {
    * digital write
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_pwm_write",
       "message0": Blockly.Msg.ARDUINO_ANALOGWRITE,
@@ -218,7 +218,7 @@ Blockly.Blocks['arduino_digital_read'] = {
    * digital read
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_pin_ison",
       "message0": Blockly.Msg.ARDUINO_DIGITALREAD,
@@ -243,7 +243,7 @@ Blockly.Blocks['arduino_pin_mode'] = {
    * pin mode
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_pin_mode",
       "message0": Blockly.Msg.ARDUINO_PINMODE,
@@ -272,23 +272,23 @@ Blockly.Blocks['arduino_pin_value'] = {
    * return pin level
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit(
-      {
-        "message0": Blockly.Msg.ARDUINO_DIGITALREAD,
-        "args0": [
-          {
-            "type": "input_value",
-            "name": "PINNUM"
-          }
-        ],
-        "inputsInline": true,
-        "output": "Number",
-        "colour": Blockly.Colours.arduino.tertiary,
-        "colourSecondary": Blockly.Colours.arduino.secondary,
-        "colourTertiary": Blockly.Colours.arduino.tertiary,
-        "outputShape": Blockly.OUTPUT_SHAPE_ROUND
-      });
+        {
+          "message0": Blockly.Msg.ARDUINO_DIGITALREAD,
+          "args0": [
+            {
+              "type": "input_value",
+              "name": "PINNUM"
+            }
+          ],
+          "inputsInline": true,
+          "output": "Number",
+          "colour": Blockly.Colours.arduino.tertiary,
+          "colourSecondary": Blockly.Colours.arduino.secondary,
+          "colourTertiary": Blockly.Colours.arduino.tertiary,
+          "outputShape": Blockly.OUTPUT_SHAPE_ROUND
+        });
   }
 };
 
@@ -298,23 +298,23 @@ Blockly.Blocks['arduino_analog_read'] = {
    * return analogread on port
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit(
-      {
-        "message0": Blockly.Msg.ARDUINO_ANALOGREAD,
-        "args0": [
-          {
-            "type": "input_value",
-            "name": "PINNUM"
-          }
-        ],
-        "inputsInline": true,
-        "output": "Number",
-        "colour": Blockly.Colours.arduino.tertiary,
-        "colourSecondary": Blockly.Colours.arduino.secondary,
-        "colourTertiary": Blockly.Colours.arduino.tertiary,
-        "outputShape": Blockly.OUTPUT_SHAPE_ROUND
-      });
+        {
+          "message0": Blockly.Msg.ARDUINO_ANALOGREAD,
+          "args0": [
+            {
+              "type": "input_value",
+              "name": "PINNUM"
+            }
+          ],
+          "inputsInline": true,
+          "output": "Number",
+          "colour": Blockly.Colours.arduino.tertiary,
+          "colourSecondary": Blockly.Colours.arduino.secondary,
+          "colourTertiary": Blockly.Colours.arduino.tertiary,
+          "outputShape": Blockly.OUTPUT_SHAPE_ROUND
+        });
   }
 };
 
@@ -323,7 +323,7 @@ Blockly.Blocks['arduino_tone'] = {
    * tone(pin, frequency, duration)
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_tone",
       "message0": Blockly.Msg.ARDUINO_TONE,
@@ -357,7 +357,7 @@ Blockly.Blocks['arduino_map'] = {
    * tone(pin, frequency, duration)
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_map",
       "message0": "map %1 from %2~%3 to %4~%5",
@@ -399,7 +399,7 @@ Blockly.Blocks['arduino_servo'] = {
    * servo(pin, angle)
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_servo",
       "message0": Blockly.Msg.ARDUINO_SERVO,
@@ -429,7 +429,7 @@ Blockly.Blocks['arduino_pulsein'] = {
    * ultrasonicsensor(pintrig, pinecho)
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_pulsein",
       "message0": Blockly.Msg.ARDUINO_PULSEIN,
@@ -455,7 +455,7 @@ Blockly.Blocks['arduino_println'] = {
    * serial println
    * @this Blockly.Block
    */
-  init: function () {
+  init: function() {
     this.jsonInit({
       "id": "arduino_println",
       "message0": Blockly.Msg.ARDUINO_PRINTLN,

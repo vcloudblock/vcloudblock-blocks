@@ -1582,12 +1582,12 @@ Blockly.WorkspaceSvg.prototype.updateToolbox = function(tree) {
 /**
  * Modify the block tree in the workspace by attribute of disabled.
  */
-Blockly.WorkspaceSvg.prototype.updateWorkspaceDisabled = function () {
+Blockly.WorkspaceSvg.prototype.updateWorkspaceDisabled = function() {
   var allBlock = this.getAllBlocks();
   var flyoutItems = this.getFlyout().getFlyoutItems();
 
-  allBlock.forEach(block => {
-    var matchedBlock = flyoutItems.find(function (item) {
+  allBlock.forEach(function(block) {
+    var matchedBlock = flyoutItems.find(function(item) {
       return item.type === block.type;
     });
     if (matchedBlock) {
@@ -1602,7 +1602,7 @@ Blockly.WorkspaceSvg.prototype.updateWorkspaceDisabled = function () {
       }
     }
   });
-}
+};
 
 /**
  * Mark this workspace as the currently focused main workspace.

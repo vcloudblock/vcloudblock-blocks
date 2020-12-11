@@ -39,7 +39,7 @@ goog.require('goog.math.Coordinate');
 
 /**
  * Class for toolbox update finish event.
- * @param
+ * @param {!Object} workspace that finsh update toolbox.
  * @extends {Blockly.Events.Abstract}
  * @constructor
  */

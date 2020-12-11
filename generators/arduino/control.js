@@ -23,16 +23,16 @@ goog.provide('Blockly.Arduino.control');
 goog.require('Blockly.Arduino');
 
 
-Blockly.Arduino['control_wait'] = function (block) {
+Blockly.Arduino['control_wait'] = function(block) {
   var arg0 = Blockly.Arduino.valueToCode(block, 'DURATION',
-    Blockly.Arduino.ORDER_UNARY_POSTFIX);
+      Blockly.Arduino.ORDER_UNARY_POSTFIX);
   var code = "delay(" + arg0 + " * 1000" + ");\n";
   return code;
 };
 
-Blockly.Arduino['control_repeat'] = function (block) {
+Blockly.Arduino['control_repeat'] = function(block) {
   var repeats = Blockly.Arduino.valueToCode(block, 'TIMES',
-    Blockly.Arduino.ORDER_UNARY_POSTFIX);
+      Blockly.Arduino.ORDER_UNARY_POSTFIX);
   var branch = Blockly.Arduino.statementToCode(block, 'SUBSTACK');
   branch = Blockly.Arduino.addLoopTrap(branch, block.id);
 
@@ -42,7 +42,7 @@ Blockly.Arduino['control_repeat'] = function (block) {
   return code;
 };
 
-Blockly.Arduino['control_forever'] = function (block) {
+Blockly.Arduino['control_forever'] = function(block) {
   var branch = Blockly.Arduino.statementToCode(block, 'SUBSTACK');
   branch = Blockly.Arduino.addLoopTrap(branch, block.id);
 
@@ -52,9 +52,9 @@ Blockly.Arduino['control_forever'] = function (block) {
   return code;
 };
 
-Blockly.Arduino['control_if'] = function (block) {
+Blockly.Arduino['control_if'] = function(block) {
   var argument = Blockly.Arduino.valueToCode(block, 'CONDITION',
-    Blockly.Arduino.ORDER_NONE) || 'false';
+      Blockly.Arduino.ORDER_NONE) || 'false';
   var branch = Blockly.Arduino.statementToCode(block, 'SUBSTACK');
   branch = Blockly.Arduino.addLoopTrap(branch, block.id);
 
@@ -64,9 +64,9 @@ Blockly.Arduino['control_if'] = function (block) {
   return code;
 };
 
-Blockly.Arduino['control_if_else'] = function (block) {
+Blockly.Arduino['control_if_else'] = function(block) {
   var argument = Blockly.Arduino.valueToCode(block, 'CONDITION',
-    Blockly.Arduino.ORDER_NONE) || 'false';
+      Blockly.Arduino.ORDER_NONE) || 'false';
   var branch = Blockly.Arduino.statementToCode(block, 'SUBSTACK');
   branch = Blockly.Arduino.addLoopTrap(branch, block.id);
   var branch2 = Blockly.Arduino.statementToCode(block, 'SUBSTACK2');
@@ -80,17 +80,17 @@ Blockly.Arduino['control_if_else'] = function (block) {
   return code;
 };
 
-Blockly.Arduino['control_wait_until'] = function (block) {
+Blockly.Arduino['control_wait_until'] = function(block) {
   var argument = Blockly.Arduino.valueToCode(block, 'CONDITION',
-    Blockly.Arduino.ORDER_UNARY_POSTFIX) || 'false';
+      Blockly.Arduino.ORDER_UNARY_POSTFIX) || 'false';
   var code = "while(!" + argument + ") {\n";
   code += Blockly.Arduino.INDENT + "_loop();\n}\n";
   return code;
 };
 
-Blockly.Arduino['control_repeat_until'] = function (block) {
+Blockly.Arduino['control_repeat_until'] = function(block) {
   var argument = Blockly.Arduino.valueToCode(block, 'CONDITION',
-    Blockly.Arduino.ORDER_UNARY_POSTFIX) || 'false';
+      Blockly.Arduino.ORDER_UNARY_POSTFIX) || 'false';
 
   var branch = Blockly.Arduino.statementToCode(block, 'SUBSTACK');
   branch = Blockly.Arduino.addLoopTrap(branch, block.id);

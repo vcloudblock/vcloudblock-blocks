@@ -23,7 +23,7 @@ goog.provide('Blockly.Arduino.texts');
 goog.require('Blockly.Arduino');
 
 
-Blockly.Arduino['text'] = function (block) {
+Blockly.Arduino['text'] = function(block) {
   // Text value.
   var code = Blockly.Arduino.quote_(block.getFieldValue('TEXT'));
   return [code, Blockly.Arduino.ORDER_ATOMIC];

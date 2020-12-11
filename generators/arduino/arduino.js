@@ -8,45 +8,45 @@ goog.provide('Blockly.Arduino.arduino');
 
 goog.require('Blockly.Arduino');
 
-Blockly.Arduino['pin_setPinMode'] = function (block) {
+Blockly.Arduino['pin_setPinMode'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '0';
   var arg1 = block.getFieldValue('MODE') || 'INPUT';
   var code = "pinMode(" + arg0 + ", " + arg1 + ");\n";
   return code;
 };
 
-Blockly.Arduino['pin_setDigitalOutput'] = function (block) {
+Blockly.Arduino['pin_setDigitalOutput'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '0';
   var arg1 = Blockly.Arduino.valueToCode(block, 'LEVEL', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 'LOW';
   var code = "digitalWrite(" + arg0 + ", " + arg1 + ");\n";
   return code;
 };
 
-Blockly.Arduino['pin_menu_level'] = function (block) {
+Blockly.Arduino['pin_menu_level'] = function(block) {
   var code = block.getFieldValue('level') || 'LOW';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['pin_setPwmOutput'] = function (block) {
+Blockly.Arduino['pin_setPwmOutput'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '0';
   var arg1 = Blockly.Arduino.valueToCode(block, 'OUT', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
   var code = "analogWrite(" + arg0 + ", " + arg1 + ")\n";
   return code;
 };
 
-Blockly.Arduino['pin_readDigitalPin'] = function (block) {
+Blockly.Arduino['pin_readDigitalPin'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '0';
   var code = "digitalRead(" + arg0 + ")";
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['pin_readAnalogPin'] = function (block) {
+Blockly.Arduino['pin_readAnalogPin'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || 'A1';
   var code = "analogRead(" + arg0 + ")";
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['pin_setServoOutput'] = function (block) {
+Blockly.Arduino['pin_setServoOutput'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || 'A1';
   var arg1 = Blockly.Arduino.valueToCode(block, 'OUT', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
 

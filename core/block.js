@@ -797,7 +797,7 @@ Blockly.Block.prototype.setTooltip = function(newTip) {
  * Get the colour of a block.
  * @return {string} #RRGGBB string.
  */
-Blockly.Block.prototype.getColour = function () {
+Blockly.Block.prototype.getColour = function() {
   return this.isEnabled() ? this.colour_ : 'url(#' + this.workspace.options.disabledPatternId + ')';
 };
 
@@ -805,7 +805,7 @@ Blockly.Block.prototype.getColour = function () {
  * Get the secondary colour of a block.
  * @return {string} #RRGGBB string.
  */
-Blockly.Block.prototype.getColourSecondary = function () {
+Blockly.Block.prototype.getColourSecondary = function() {
   return this.isEnabled() ? this.colourSecondary_ : 'url(#' + this.workspace.options.disabledPatternId + ')';
 };
 
@@ -813,7 +813,7 @@ Blockly.Block.prototype.getColourSecondary = function () {
  * Get the tertiary colour of a block.
  * @return {string} #RRGGBB string.
  */
-Blockly.Block.prototype.getColourTertiary = function () {
+Blockly.Block.prototype.getColourTertiary = function() {
   return this.isEnabled() ? this.colourTertiary_ : 'url(#' + this.workspace.options.disabledPatternId + ')';
 };
 
@@ -1157,7 +1157,7 @@ Blockly.Block.prototype.setDisabled = function(disabled) {
  * Get whether this block is enabled or not.
  * @return {boolean} True if enabled.
  */
-Blockly.Block.prototype.isEnabled = function () {
+Blockly.Block.prototype.isEnabled = function() {
   if (this.getSurroundParent()) {
     return this.getSurroundParent().isEnabled();
   } else {
@@ -1173,7 +1173,7 @@ Blockly.Block.prototype.setEnabled = function(enabled) {
   this.setEditable(enabled);
   if (this.isEnabled() != enabled) {
     Blockly.Events.fire(new Blockly.Events.BlockChange(
-      this, 'disabled', null, this.disabled, !enabled));
+        this, 'disabled', null, this.disabled, !enabled));
     this.disabled = !enabled;
 
     for (var i = 0, input; input = this.inputList[i]; i++) {

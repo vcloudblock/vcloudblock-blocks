@@ -23,7 +23,7 @@ goog.provide('Blockly.Arduino.operator');
 goog.require('Blockly.Arduino');
 
 
-Blockly.Arduino['operator_arithmetic'] = function (block) {
+Blockly.Arduino['operator_arithmetic'] = function(block) {
   var oplist = {
     operator_add: [' + ', Blockly.Arduino.ORDER_ADDITIVE],
     operator_subtract: [' - ', Blockly.Arduino.ORDER_ADDITIVE],
@@ -45,14 +45,14 @@ Blockly.Arduino['operator_subtract'] = Blockly.Arduino['operator_arithmetic'];
 Blockly.Arduino['operator_multiply'] = Blockly.Arduino['operator_arithmetic'];
 Blockly.Arduino['operator_divide'] = Blockly.Arduino['operator_arithmetic'];
 
-Blockly.Arduino['operator_random'] = function (block) {
+Blockly.Arduino['operator_random'] = function(block) {
   var arg0 = Blockly.Arduino.valueToCode(block, 'FROM', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '0';
   var arg1 = Blockly.Arduino.valueToCode(block, 'TO', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '0';
   var code = "random(" + arg0 + ", " + arg1 + ")";
   return [code, Blockly.Arduino.ORDER_UNARY_POSTFIX];
 };
 
-Blockly.Arduino['operator_compare'] = function (block) {
+Blockly.Arduino['operator_compare'] = function(block) {
   var oplist = {
     "operator_gt": " > ",
     "operator_equals": " == ",
@@ -87,7 +87,7 @@ Blockly.Arduino['operator_gt'] = Blockly.Arduino['operator_compare'];
 Blockly.Arduino['operator_equals'] = Blockly.Arduino['operator_compare'];
 Blockly.Arduino['operator_lt'] = Blockly.Arduino['operator_compare'];
 
-Blockly.Arduino['operator_operation'] = function (block) {
+Blockly.Arduino['operator_operation'] = function(block) {
   var oplist = {
     "operator_and": " && ",
     "operator_or": " || "
@@ -112,15 +112,15 @@ Blockly.Arduino['operator_not'] = function(block) {
   return [code, order];
 };
 
-Blockly.Arduino['operator_join'] = function (block) {
+Blockly.Arduino['operator_join'] = function(block) {
   var order = Blockly.Arduino.ORDER_UNARY_PREFIX;
   var arg0 = Blockly.Arduino.valueToCode(block, 'STRING1', order) || '\'\'';
   var arg1 = Blockly.Arduino.valueToCode(block, 'STRING2', order) || '\'\'';
   var code = 'String(' + arg0 + ') + String(' + arg1 + ')';
   return [code, Blockly.Arduino.ORDER_ADDITIVE];
-}
+};
 
-Blockly.Arduino['operator_letter_of'] = function (block) {
+Blockly.Arduino['operator_letter_of'] = function(block) {
   var order = Blockly.Arduino.ORDER_UNARY_PREFIX;
   var arg0 = Blockly.Arduino.valueToCode(block, 'STRING', order) || '\'\'';
   var arg1 = Blockly.Arduino.valueToCode(block, 'LETTER', order) || '0';
@@ -134,24 +134,24 @@ Blockly.Arduino['operator_letter_of'] = function (block) {
 
   var code = 'String(' + arg0 + ').charAt(' + arg1 + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
-}
+};
 
-Blockly.Arduino['operator_length'] = function (block) {
+Blockly.Arduino['operator_length'] = function(block) {
   var order = Blockly.Arduino.ORDER_UNARY_PREFIX;
   var arg0 = Blockly.Arduino.valueToCode(block, 'STRING', order) || '\'\'';
   var code = 'String(' + arg0 + ').length()';
   return [code, Blockly.Arduino.ORDER_NONE];
-}
+};
 
-Blockly.Arduino['operator_contains'] = function (block) {
+Blockly.Arduino['operator_contains'] = function(block) {
   var order = Blockly.Arduino.ORDER_UNARY_PREFIX;
   var arg0 = Blockly.Arduino.valueToCode(block, 'STRING1', order) || '\'\'';
   var arg1 = Blockly.Arduino.valueToCode(block, 'STRING2', order) || '0';
   var code = 'String(' + arg0 + ').indexof(String(' + arg1 + '))';
   return [code, Blockly.Arduino.ORDER_NONE];
-}
+};
 
-Blockly.Arduino['operator_mod'] = function (block) {
+Blockly.Arduino['operator_mod'] = function(block) {
   var order = Blockly.Arduino.ORDER_MULTIPLICATIVE;
   var arg0 = Blockly.Arduino.valueToCode(block, 'NUM1', order) || '0';
   var arg1 = Blockly.Arduino.valueToCode(block, 'NUM2', order) || '0';
@@ -159,14 +159,14 @@ Blockly.Arduino['operator_mod'] = function (block) {
   return [code, order];
 };
 
-Blockly.Arduino['operator_round'] = function (block) {
+Blockly.Arduino['operator_round'] = function(block) {
   var order = Blockly.Arduino.ORDER_UNARY_POSTFIX;
   var arg0 = Blockly.Arduino.valueToCode(block, 'NUM', order) || '0';
   var code = 'round(' + arg0 + ')';
   return [code, Blockly.Arduino.ORDER_NONE];
 };
 
-Blockly.Arduino['operator_mathop'] = function (block) {
+Blockly.Arduino['operator_mathop'] = function(block) {
   var order = Blockly.Arduino.ORDER_UNARY_POSTFIX;
   var mode = block.getFieldValue('OPERATOR');
   var arg0 = Blockly.Arduino.valueToCode(block, 'NUM', order) || '0';

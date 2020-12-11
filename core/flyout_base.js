@@ -400,9 +400,9 @@ Blockly.Flyout.prototype.getWorkspace = function() {
  * @return {!Array.<!Blockly.Block>} The blocks list of the flyout.
  * @package
  */
-Blockly.Flyout.prototype.getFlyoutItems = function () {
+Blockly.Flyout.prototype.getFlyoutItems = function() {
   return this.blockContents_;
-}
+};
 
 
 /**

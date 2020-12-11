@@ -37,8 +37,8 @@ Blockly.Arduino = new Blockly.Generator('Arduino');
  * @private
  */
 Blockly.Arduino.addReservedWords(
-  // https://en.cppreference.com/w/cpp/keyword
-  'alignas,alignof,and,and_eq,asm,atomic_cancel,atomic_commit,' +
+    // https://en.cppreference.com/w/cpp/keyword
+    'alignas,alignof,and,and_eq,asm,atomic_cancel,atomic_commit,' +
   'atomic_noexcept,auto,bitand,bitor,bool,break,case,catch,char,char8_t,' +
   'char16_t,char32_t,class,compl,concept,const,consteval,constexpr,' +
   'constinit,const_cast,continue,co_await,co_return,co_yield,decltype,' +
@@ -106,7 +106,7 @@ Blockly.Arduino.INDENT = '  ';
  * Initialise the database of variable names.
  * @param {!Blockly.Workspace} workspace Workspace to generate code from.
  */
-Blockly.Arduino.init = function (workspace) {
+Blockly.Arduino.init = function(workspace) {
   // Create a dictionary of includes to be printed at head.
   Blockly.Arduino.includes_ = Object.create(null);
   // Create a dictionary of definitions to be printed after includes.
@@ -136,7 +136,7 @@ Blockly.Arduino.init = function (workspace) {
   for (var x = 0; x < variables.length; x++) {
     defvars[x] = 'float ' +
       Blockly.Arduino.variableDB_.getName(variables[x].name,
-        Blockly.Variables.NAME_TYPE) + ';';
+          Blockly.Variables.NAME_TYPE) + ';';
   }
   if (variables.length > 0) {
     Blockly.Arduino.definitions_['variables'] = defvars.join('\n');
@@ -148,7 +148,7 @@ Blockly.Arduino.init = function (workspace) {
  * @param {string} code Generated code.
  * @return {string} Completed code.
  */
-Blockly.Arduino.finish = function (code) {
+Blockly.Arduino.finish = function(code) {
   // Convert the includes dictionary into a list.
   var including = [];
   for (var name in Blockly.Arduino.includes_) {
@@ -211,7 +211,7 @@ Blockly.Arduino.finish = function (code) {
   delete Blockly.Arduino.definitions_;
   delete Blockly.Arduino.includes_;
   delete Blockly.Arduino.customFunctions_;
-  delete Blockly.Arduino.customFunctionsArgName_
+  delete Blockly.Arduino.customFunctionsArgName_;
   delete Blockly.Arduino.setups_;
   delete Blockly.Arduino.loop_;
   Blockly.Arduino.variableDB_.reset();
@@ -267,7 +267,7 @@ Blockly.Arduino.scrub_ = function(block, code) {
     && block.getTopStackBlock().type !== 'event_whenarduinobegin'
     && block.getTopStackBlock().type !== 'procedures_definition'
     && block.getSurroundParent() === null) {
-        return '';
+    return '';
   }
 
   var codeWithIndent = code;
@@ -299,7 +299,7 @@ Blockly.Arduino.scrub_ = function(block, code) {
  * @param {string} line Line of generated code.
  * @return {string} Legal line of code.
  */
-Blockly.Arduino.scrubNakedValue = function (line) {
+Blockly.Arduino.scrubNakedValue = function(line) {
   return line + ';\n';
 };
 
@@ -309,11 +309,11 @@ Blockly.Arduino.scrubNakedValue = function (line) {
  * @return {string} Arduino string.
  * @private
  */
-Blockly.Arduino.quote_ = function (string) {
+Blockly.Arduino.quote_ = function(string) {
   // TODO: This is a quick hack.  Replace with goog.string.quote
   string = string.replace(/\\/g, '\\\\')
-    .replace(/\n/g, '\\\n')
-    .replace(/\$/g, '\\$')
-    .replace(/'/g, '\\\'');
-  return '\"' + string + '\"';
+      .replace(/\n/g, '\\\n')
+      .replace(/\$/g, '\\$')
+      .replace(/'/g, '\\\'');
+  return '"' + string + '"';
 };
