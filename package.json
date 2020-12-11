@@ -4,10 +4,10 @@
   "description": "Scratch-HW Blocks is a library for building creative computing interfaces.",
   "author": "Massachusetts Institute of Technology",
   "license": "Apache-2.0",
-  "homepage": "https://github.com/ScratchHW/scratch-blocks#readme",
+  "homepage": "https://github.com/ScratchHW/scratchhw-blocks#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ScratchHW/scratch-blocks.git"
+    "url": "https://github.com/ScratchHW/scratchhw-blocks.git"
   },
   "main": "./dist/vertical.js",
   "browser": "./shim/vertical.js",
