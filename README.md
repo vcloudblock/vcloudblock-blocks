@@ -1,5 +1,5 @@
-# scratch-blocks
-![](https://img.shields.io/travis/ScratchHW/scratch-blocks?style=plastic) ![](https://img.shields.io/github/license/ScratchHW/scratch-blocks?style=plastic)
+# scratchhw-blocks
+![](https://img.shields.io/travis/com/ScratchHW/scratch-blocks) ![](https://img.shields.io/github/license/ScratchHW/scratch-blocks)
 
 ## Instructions
 
@@ -10,7 +10,7 @@ npm link
 
 ## Attention
 
-If you modified this project, you have to run `npm run prepublish`  and restart scratch-gui. The webpack-dev-server won't rebuild the scratch-gui automaticly.
+If you modified this project, you have to run `npm run prepublish`  and restart scratchhw-gui. The webpack-dev-server won't rebuild the scratchhw-gui automaticly.
 
  
 
