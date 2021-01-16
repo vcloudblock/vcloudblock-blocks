@@ -24,11 +24,11 @@ const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
 const transifex = require('transifex');
-const locales = require('scratchhw-l10n').default;
+const locales = require('openblock-l10n').default;
 
 // Globals
 const PATH_OUTPUT = path.resolve(__dirname, '../msg');
-const PROJECT = 'scratch-editor-2'
+const PROJECT = 'openblock-editor'
 const RESOURCE = 'blocks';
 const MODE = {mode: 'reviewed'};
 
