@@ -1,52 +1,66 @@
 /**
- * Created by Riven on 7/14/2016.
+ * Visual Blocks Language
+ *
+ * Copyright 2020 Arthur Zheng.
+ * https://github.com/zhengyangliu/scratch-blocks
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 'use strict';
 
 goog.provide('Blockly.Arduino.arduino');
 
 goog.require('Blockly.Arduino');
 
-Blockly.Arduino['pin_setPinMode'] = function(block) {
+Blockly.Arduino['arduino_pin_setPinMode'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '0';
   var arg1 = block.getFieldValue('MODE') || 'INPUT';
   var code = "pinMode(" + arg0 + ", " + arg1 + ");\n";
   return code;
 };
 
-Blockly.Arduino['pin_setDigitalOutput'] = function(block) {
+Blockly.Arduino['arduino_pin_setDigitalOutput'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '0';
   var arg1 = Blockly.Arduino.valueToCode(block, 'LEVEL', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 'LOW';
   var code = "digitalWrite(" + arg0 + ", " + arg1 + ");\n";
   return code;
 };
 
-Blockly.Arduino['pin_menu_level'] = function(block) {
+Blockly.Arduino['arduino_pin_menu_level'] = function(block) {
   var code = block.getFieldValue('level') || 'LOW';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['pin_setPwmOutput'] = function(block) {
+Blockly.Arduino['arduino_pin_setPwmOutput'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '0';
   var arg1 = Blockly.Arduino.valueToCode(block, 'OUT', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
   var code = "analogWrite(" + arg0 + ", " + arg1 + ");\n";
   return code;
 };
 
-Blockly.Arduino['pin_readDigitalPin'] = function(block) {
+Blockly.Arduino['arduino_pin_readDigitalPin'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '0';
   var code = "digitalRead(" + arg0 + ")";
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['pin_readAnalogPin'] = function(block) {
+Blockly.Arduino['arduino_pin_readAnalogPin'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || 'A1';
   var code = "analogRead(" + arg0 + ")";
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['pin_setServoOutput'] = function(block) {
+Blockly.Arduino['arduino_pin_setServoOutput'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || 'A1';
   var arg1 = Blockly.Arduino.valueToCode(block, 'OUT', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
 
@@ -58,7 +72,7 @@ Blockly.Arduino['pin_setServoOutput'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['pin_attachInterrupt'] = function(block) {
+Blockly.Arduino['arduino_pin_attachInterrupt'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '2';
   var arg1 = block.getFieldValue('MODE') || 'RISING';
 
@@ -72,39 +86,39 @@ Blockly.Arduino['pin_attachInterrupt'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['pin_detachInterrupt'] = function(block) {
+Blockly.Arduino['arduino_pin_detachInterrupt'] = function(block) {
   var arg0 = block.getFieldValue('PIN') || '2';
 
   var code = 'detachInterrupt(digitalPinToInterrupt(' + arg0 + ');\n';
   return code;
 };
 
-Blockly.Arduino['serial_serialBegin'] = function(block) {
+Blockly.Arduino['arduino_serial_serialBegin'] = function(block) {
   var arg0 = Blockly.Arduino.valueToCode(block, 'VALUE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '9600';
 
   var code = 'Serial.begin(' + arg0 + ');\n';
   return code;
 };
 
-Blockly.Arduino['serial_serialPrint'] = function(block) {
+Blockly.Arduino['arduino_serial_serialPrint'] = function(block) {
   var arg0 = Blockly.Arduino.valueToCode(block, 'VALUE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '';
 
   var code = 'Serial.println(' + arg0 + ');\n';
   return code;
 };
 
-Blockly.Arduino['serial_serialAvailable'] = function() {
+Blockly.Arduino['arduino_serial_serialAvailable'] = function() {
   var code = 'Serial.available()';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 
-Blockly.Arduino['serial_serialReadAByte'] = function() {
+Blockly.Arduino['arduino_serial_serialReadAByte'] = function() {
   var code = 'Serial.read()';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['serial_multiSerialBegin'] = function(block) {
+Blockly.Arduino['arduino_serial_multiSerialBegin'] = function(block) {
   var arg0 = block.getFieldValue('NO') || 0;
   var arg1 = Blockly.Arduino.valueToCode(block, 'VALUE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '9600';
 
@@ -118,7 +132,7 @@ Blockly.Arduino['serial_multiSerialBegin'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['serial_multiSerialPrint'] = function(block) {
+Blockly.Arduino['arduino_serial_multiSerialPrint'] = function(block) {
   var arg0 = block.getFieldValue('NO') || 0;
   var arg1 = Blockly.Arduino.valueToCode(block, 'VALUE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '';
 
@@ -132,20 +146,20 @@ Blockly.Arduino['serial_multiSerialPrint'] = function(block) {
   return code;
 };
 
-Blockly.Arduino['serial_multiSerialAvailable'] = function(block) {
+Blockly.Arduino['arduino_serial_multiSerialAvailable'] = function(block) {
   var arg0 = block.getFieldValue('NO') || 0;
   var code = 'Serial' + arg0 + '.available()';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 
-Blockly.Arduino['serial_multiSerialReadAByte'] = function(block) {
+Blockly.Arduino['arduino_serial_multiSerialReadAByte'] = function(block) {
   var arg0 = block.getFieldValue('NO') || 0;
   var code = 'Serial' + arg0 + '.read()';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['data_dataMap'] = function(block) {
+Blockly.Arduino['arduino_data_dataMap'] = function(block) {
   var arg0 = Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
   var arg1 = Blockly.Arduino.valueToCode(block, 'ARG0', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 1;
   var arg2 = Blockly.Arduino.valueToCode(block, 'ARG1', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 100;
@@ -156,7 +170,7 @@ Blockly.Arduino['data_dataMap'] = function(block) {
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['data_dataConstrain'] = function(block) {
+Blockly.Arduino['arduino_data_dataConstrain'] = function(block) {
   var arg0 = Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
   var arg1 = Blockly.Arduino.valueToCode(block, 'ARG0', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 1;
   var arg2 = Blockly.Arduino.valueToCode(block, 'ARG1', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 100;
@@ -165,7 +179,7 @@ Blockly.Arduino['data_dataConstrain'] = function(block) {
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['data_dataConvert'] = function(block) {
+Blockly.Arduino['arduino_data_dataConvert'] = function(block) {
   var arg0 = Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
   var arg1 = block.getFieldValue('TYPE') || 'WHOLE_NUMBER';
 
@@ -186,14 +200,14 @@ Blockly.Arduino['data_dataConvert'] = function(block) {
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['data_dataConvertASCIICharacter'] = function(block) {
+Blockly.Arduino['arduino_data_dataConvertASCIICharacter'] = function(block) {
   var arg0 = Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '0';
 
   var code = 'String(char(' + arg0 + '))';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino['data_dataConvertASCIINumber'] = function(block) {
+Blockly.Arduino['arduino_data_dataConvertASCIINumber'] = function(block) {
   var arg0 = Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '0';
 
   var code = 'toascii(String(' + arg0 + ')[0])';

@@ -398,6 +398,7 @@ Blockly.FieldMatrix.prototype.createButton_ = function(fill) {
 Blockly.FieldMatrix.prototype.updateMatrix_ = function() {
   for (var i = 0; i < this.matrix_.length; i++) {
     if (this.matrix_[i] === '0') {
+      // TODO 看看这里的color是从哪里跑偏的
       this.fillMatrixNode_(this.ledButtons_, i, this.sourceBlock_.colourSecondary_);
       this.fillMatrixNode_(this.ledThumbNodes_, i, this.sourceBlock_.colour_);
     } else {

@@ -67,8 +67,8 @@ Blockly.Arduino['operator_compare'] = function(block) {
   if (arg0 === "\"\"") {
     arg0 = '0';
   }
-  if (arg0 === "\"\"") {
-    arg0 = '0';
+  if (arg1 === "\"\"") {
+    arg1 = '0';
   }
   // Arg is a number
   if (parseFloat(arg0.slice(1, -1)) == arg0.slice(1, -1)) {
