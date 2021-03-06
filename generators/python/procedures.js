@@ -30,7 +30,9 @@ Blockly.Python['procedures_definition'] = function(block) {
   func = func.slice(2);
   var code = func + ':\n';
   code = Blockly.Python.scrub_(block, code);
-  code += '\n\n';
+  if (code === "code") {
+    code = "pass\n";
+  }
 
   Blockly.Python.customFunctions_[func] = code;
   return null;
