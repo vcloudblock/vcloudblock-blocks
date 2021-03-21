@@ -1158,7 +1158,9 @@ Blockly.Block.prototype.setDisabled = function(disabled) {
  * @return {boolean} True if enabled.
  */
 Blockly.Block.prototype.isEnabled = function() {
-  if (this.getSurroundParent()) {
+  // if this block is surrounded and has no previous block, means it is
+  // inside a block disable/enable with it's parent.
+  if (this.getSurroundParent() && !this.getPreviousBlock()) {
     return this.getSurroundParent().isEnabled();
   } else {
     return !this.disabled;
