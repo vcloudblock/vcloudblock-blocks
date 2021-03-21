@@ -1587,19 +1587,44 @@ Blockly.WorkspaceSvg.prototype.updateWorkspaceDisabled = function() {
   var flyoutItems = this.getFlyout().getFlyoutItems();
 
   allBlock.forEach(function(block) {
+    // Try to find the same type block in flyout.
     var matchedBlock = flyoutItems.find(function(item) {
       return item.type === block.type;
     });
-    if (matchedBlock) {
-      if (matchedBlock.disabled) {
-        block.setEnabled(false);
-      } else {
-        block.setEnabled(true);
-      }
+
+    // These block is basic block witch inside the other blocks, or is
+    // self made block. ingore them when we disable the block according to
+    // whether it is also in flyout.
+    var ignoreList = [
+      // Self made block
+      'procedures_definition',
+      'procedures_prototype',
+      'argument_reporter_number',
+      'argument_reporter_string',
+      'argument_reporter_boolean',
+      // colour
+      'colour_picker',
+      // math
+      'math_number',
+      'math_integer',
+      'math_whole_number',
+      'math_positive_number',
+      'math_angle',
+      // matrix
+      'matrix',
+      // note
+      'note',
+      // text
+      'text'
+    ];
+
+    // if a block in workspace can not find the same type block in flyout.
+    // And it's not include in ignore list, disable it.
+    if (!matchedBlock && !ignoreList.includes(block.type)) {
+      block.setEnabled(false);
     } else {
-      if ((block.type != 'math_number') || ((block.type != 'text'))) {
-        block.setEnabled(true);
-      }
+      // else recovery this block.
+      block.setEnabled(true);
     }
   });
 };
