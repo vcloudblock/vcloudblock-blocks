@@ -231,10 +231,11 @@ Blockly.Arduino.finish = function(code) {
  * @private
  */
 Blockly.Arduino.scrub_ = function(block, code) {
-  if (code === null) {
+  if ((code === null) || (!Blockly.Arduino.check_(block))) {
     // Block has handled code generation itself.
     return '';
   }
+
   var commentCode = '';
   // Only collect comments for blocks that aren't inline.
   if (!block.outputConnection || !block.outputConnection.targetConnection) {
@@ -256,18 +257,6 @@ Blockly.Arduino.scrub_ = function(block, code) {
         }
       }
     }
-  }
-
-  // If this block is not event_whenarduinobegin/procedures_definition
-  // and is not connected to event_whenarduinobegin/procedures_definition
-  // block's tree and it is not surround by a parent, mean's it is not a
-  // program tree block. Don't add it's code.
-  if (block.type !== 'event_whenarduinobegin'
-    && block.type !== 'procedures_definition'
-    && block.getTopStackBlock().type !== 'event_whenarduinobegin'
-    && block.getTopStackBlock().type !== 'procedures_definition'
-    && block.getSurroundParent() === null) {
-    return '';
   }
 
   var codeWithIndent = code;
@@ -316,4 +305,28 @@ Blockly.Arduino.quote_ = function(string) {
       .replace(/\$/g, '\\$')
       .replace(/'/g, '\\\'');
   return '"' + string + '"';
+};
+
+/**
+ * Common tasks for generating code from blocks.
+ * Check whether this block has a valid connection.
+ * @param {!Blockly.Block} block The current block.
+ * @return {bool} Wether the block has effective connection.
+ * @private
+ */
+Blockly.Arduino.check_ = function(block) {
+  // If a block has no previousConnection means it is a hat block
+  // or a string/nubmer block or a bool block.
+
+  // If this block is not surround by a parent. And if this block
+  // is not connected to a hat block's tree or it's output shap is
+  // round or sharp mean's it is not a program tree block. Skip it.
+  if (block.getSurroundParent() === null) {
+    if ((block.previousConnection !== null && block.getTopStackBlock().previousConnection !== null)
+    || block.getOutputShape() === 2 || block.getOutputShape() === 1
+    ) {
+      return false;
+    }
+  }
+  return true;
 };

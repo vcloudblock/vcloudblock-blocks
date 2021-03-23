@@ -220,7 +220,7 @@ Blockly.Python.finish = function(code) {
  * @private
  */
 Blockly.Python.scrub_ = function(block, code) {
-  if (code === null) {
+  if ((code === null) || (!Blockly.Python.check_(block))) {
     // Block has handled code generation itself.
     return '';
   }
@@ -244,18 +244,6 @@ Blockly.Python.scrub_ = function(block, code) {
           }
         }
       }
-    }
-  }
-
-  // If a block has previousConnection means it is a hat block.
-  // If this block is not connected to a hat block's tree and
-  // it is not surround by a parent or it's output shap is round
-  // or sharp and not surround by a parent mean's it is not a
-  //program tree block.Don't add it's code.
-  if (block.getSurroundParent() === null) {
-    if ((block.previousConnection !== null && block.getTopStackBlock().previousConnection !== null)
-      || block.getOutputShape() === 2 || block.getOutputShape() === 1) {
-      return '';
     }
   }
 
@@ -307,4 +295,28 @@ Blockly.Python.quote_ = function(string) {
       .replace(/%/g, '\\%')
       .replace(/'/g, '\\\'');
   return '\'' + string + '\'';
+};
+
+/**
+ * Common tasks for generating code from blocks.
+ * Check whether this block has a valid connection.
+ * @param {!Blockly.Block} block The current block.
+ * @return {bool} Wether the block has effective connection.
+ * @private
+ */
+Blockly.Python.check_ = function(block) {
+  // If a block has no previousConnection means it is a hat block
+  // or a string/nubmer block or a bool block.
+
+  // If this block is not surround by a parent. And if this block
+  // is not connected to a hat block's tree or it's output shap is
+  // round or sharp mean's it is not a program tree block. Skip it.
+  if (block.getSurroundParent() === null) {
+    if ((block.previousConnection !== null && block.getTopStackBlock().previousConnection !== null)
+    || block.getOutputShape() === 2 || block.getOutputShape() === 1
+    ) {
+      return false;
+    }
+  }
+  return true;
 };
