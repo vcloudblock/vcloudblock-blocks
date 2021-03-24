@@ -102,6 +102,8 @@ Blockly.Arduino.ORDER_NONE = 99;          // (...)
  */
 Blockly.Arduino.INDENT = '  ';
 
+Blockly.Arduino.firstLoop = true;
+
 /**
  * Initialise the database of variable names.
  * @param {!Blockly.Workspace} workspace Workspace to generate code from.
@@ -197,15 +199,22 @@ Blockly.Arduino.finish = function(code) {
   ret += code;
   ret += "}\n";
 
-  // _loop()
-  ret += "\nvoid _loop() {\n";
-  if (loops.length != 0) {
-    ret += Blockly.Arduino.INDENT + loops.join('\n' + Blockly.Arduino.INDENT) + "\n";
-  }
-  ret += "}\n";
-
   // loop()
-  ret += "\nvoid loop() {\n" + Blockly.Arduino.INDENT + "_loop();\n}\n";
+  // if there is no loop add a empty loop function.
+  if (Blockly.Arduino.firstLoop) {
+    ret += "\nvoid loop() {\n" + Blockly.Arduino.INDENT + "repeat();\n}\n";
+  }
+
+  // repeat()
+  // if has loops_ code, add the repeat() function to place it.
+  if (loops.length != 0) {
+    ret += "\nvoid repeat() {\n";
+    ret += Blockly.Arduino.INDENT + loops.join('\n' + Blockly.Arduino.INDENT) + "\n";
+    ret += "}\n";
+  } else {
+    // if no repeat delet all repeat() call in code.
+    ret = ret.replace(/ *repeat\(\);\n/g, '');
+  }
 
   // Clean up temporary data.
   delete Blockly.Arduino.definitions_;
@@ -215,6 +224,7 @@ Blockly.Arduino.finish = function(code) {
   delete Blockly.Arduino.setups_;
   delete Blockly.Arduino.loop_;
   Blockly.Arduino.variableDB_.reset();
+  Blockly.Arduino.firstLoop = true;
 
   return ret;
 };
@@ -260,10 +270,10 @@ Blockly.Arduino.scrub_ = function(block, code) {
   }
 
   var codeWithIndent = code;
-  // At this step if block is not surround by a parent and it is not empty,
-  // mean's it is in setup() function or it is custom function, add indent
-  // at start of every line.
-  if (block.getSurroundParent() === null && code !== "") {
+  // At this step if block is not surround by a parent and it is not empty and it's not
+  // a control_forever block. mean's it is in setup() function or it is custom function,
+  // add indent at start of every line.
+  if (block.getSurroundParent() === null && code !== "" && block.type !== 'control_forever') {
     // Add indent at start except custom function
     if (block.type !== 'procedures_definition'
       && block.type !== 'procedures_prototype') {
