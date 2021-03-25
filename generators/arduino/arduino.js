@@ -125,42 +125,52 @@ Blockly.Arduino['arduino_serial_serialReadData'] = function() {
 };
 
 Blockly.Arduino['arduino_serial_multiSerialBegin'] = function(block) {
-  var arg0 = block.getFieldValue('NO') || 0;
+  var arg0 = block.getFieldValue('NO') || '0';
   var arg1 = Blockly.Arduino.valueToCode(block, 'VALUE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '9600';
 
   var code;
-  if(arg0 === 0)
+  if(arg0 === '0')
   {
-    code = 'Serial.begin(' + arg1 + ');\n';
-  } else {
-    code = 'Serial' + arg0 + '.begin(' + arg1 + ');\n';
+    arg0 = '';
   }
+  code = 'Serial' + arg0 + '.begin(' + arg1 + ');\n';
   return code;
 };
 
 Blockly.Arduino['arduino_serial_multiSerialPrint'] = function(block) {
-  var arg0 = block.getFieldValue('NO') || 0;
+  var arg0 = block.getFieldValue('NO') || '0';
   var arg1 = Blockly.Arduino.valueToCode(block, 'VALUE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '';
 
   var code;
-  if(arg0 === 0)
+  if(arg0 === '0')
   {
-    code = 'Serial.println(' + arg1 + ');\n';
-  } else {
-    code = 'Serial' + arg0 + '.println(' + arg1 + ');\n';
+    arg0 = '';
   }
+  code = 'Serial' + arg0 + '.println(' + arg1 + ');\n';
   return code;
 };
 
 Blockly.Arduino['arduino_serial_multiSerialAvailable'] = function(block) {
-  var arg0 = block.getFieldValue('NO') || 0;
+  var arg0 = block.getFieldValue('NO') || '0';
+  var code;
+  if(arg0 === '0')
+  {
+    arg0 = '';
+  }
+
   var code = 'Serial' + arg0 + '.available()';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
 
 
 Blockly.Arduino['arduino_serial_multiSerialReadAByte'] = function(block) {
-  var arg0 = block.getFieldValue('NO') || 0;
+  var arg0 = block.getFieldValue('NO') || '0';
+  var code;
+  if(arg0 === '0')
+  {
+    arg0 = '';
+  }
+
   var code = 'Serial' + arg0 + '.read()';
   return [code, Blockly.Arduino.ORDER_ATOMIC];
 };
