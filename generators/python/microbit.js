@@ -25,20 +25,20 @@ goog.require('Blockly.Python');
 
 Blockly.Python['microbit_pin_setDigitalOutput'] = function(block) {
   var pin = block.getFieldValue('PIN');
-  var level = Blockly.Arduino.valueToCode(block, 'LEVEL', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 'LOW';
+  var level = Blockly.Python.valueToCode(block, 'LEVEL', Blockly.Python.ORDER_UNARY_POSTFIX) || 'LOW';
 
   var code = "pin" + pin + ".write_digital(" + level + ")\n";
   return code;
 };
 
-Blockly.Arduino['microbit_pin_menu_level'] = function(block) {
+Blockly.Python['microbit_pin_menu_level'] = function(block) {
   var code = block.getFieldValue('level') || '0';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_pin_setPwmOutput'] = function(block) {
   var pin = block.getFieldValue('PIN');
-  var out = Blockly.Arduino.valueToCode(block, 'OUT', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '0';
+  var out = Blockly.Python.valueToCode(block, 'OUT', Blockly.Python.ORDER_UNARY_POSTFIX) || '0';
 
   var code = "pin" + pin + ".write_analog(" + out + ")\n";
   return code;
@@ -47,33 +47,20 @@ Blockly.Python['microbit_pin_setPwmOutput'] = function(block) {
 Blockly.Python['microbit_pin_readDigitalPin'] = function(block) {
   var pin = block.getFieldValue('PIN') || '0';
   var code = "pin" + pin + ".read_digital()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_pin_readAnalogPin'] = function(block) {
   var pin = block.getFieldValue('PIN') || '0';
   var code = "pin" + pin + ".read_analog()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_pin_pinTouched'] = function(block) {
   var pin = block.getFieldValue('PIN') || '0';
   var code = "pin" + pin + ".is_touched()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
-
-// Todo this function need external python lib file. move this to extensions.
-// Blockly.Python['microbit_pin_setServoOutput'] = function(block) {
-//   Blockly.Python.imports_["servo"] = "from servo import Servo";
-
-//   var pin = block.getFieldValue('PIN');
-//   var pin = block.getFieldValue('PIN');
-
-//   Blockly.Python.setups_["servo" + pin] = "sv" + pin + " = Servo(pin" + pin + ")";
-
-//   var code = "sv" + pin + ".write_angle(50)";
-//   return code;
-// };
 
 Blockly.Python['microbit_display_showImage'] = function(block) {
   var arg0 = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_ATOMIC) || '0';
@@ -139,58 +126,58 @@ Blockly.Python['microbit_display_showOnPiexlbrightness'] = function(block) {
 
 Blockly.Python['microbit_sensor_menu_ledBrightness'] = function(block) {
   var code = block.getFieldValue('ledBrightness') || '0';
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_sensor_buttonIsPressed'] = function(block) {
   var key = block.getFieldValue('KEY');
 
   var code = "button_" + key + ".is_pressed()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_sensor_gestureIsX'] = function(block) {
   var sta = block.getFieldValue('STA');
 
   var code = "accelerometer.is_gesture('" + sta + "')";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_sensor_axisAcceleration'] = function(block) {
   var axis = block.getFieldValue('AXIS');
 
   var code = "accelerometer.get_" + axis + "()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_sensor_compassAngle'] = function() {
   var code = "compass.heading()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_sensor_compassMagneticDensity'] = function() {
   var code = "compass.get_field_strength()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_sensor_calibrateCompass'] = function() {
   var code = "compass.calibrate()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_sensor_lightLevel'] = function() {
   var code = "display.read_light_level()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_sensor_temperature'] = function() {
   var code = "temperature()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_sensor_runningTime'] = function() {
   var code = "running_time()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_wireless_openWirelessCommunication'] = function() {
@@ -222,7 +209,7 @@ Blockly.Python['microbit_wireless_sendWirelessMessage'] = function(block) {
 Blockly.Python['microbit_wireless_receiveWirelessMessage'] = function() {
   Blockly.Python.imports_["radio"] = "import radio";
   var code = "radio.receive()";
-  return [code, Blockly.Arduino.ORDER_ATOMIC];
+  return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
 Blockly.Python['microbit_wireless_setWirelessCommunicationChannel'] = function(block) {
