@@ -1618,13 +1618,17 @@ Blockly.WorkspaceSvg.prototype.updateWorkspaceDisabled = function() {
       'text'
     ];
 
+    console.log('block=',block.type);
+
     // if a block in workspace can not find the same type block in flyout.
     // And it's not include in ignore list, and it's not a shadow block, disable it.
     if (!matchedBlock && !ignoreList.includes(block.type) && !block.isShadow()) {
       block.setEnabled(false);
+      console.log('disable');
     } else {
       // else recovery this block.
       block.setEnabled(true);
+      console.log('enable');
     }
   });
 };
