@@ -48,9 +48,6 @@ Blockly.Python['data_changevariableby'] = function(block) {
   var varName = Blockly.Python.variableDB_.getName(block.getFieldValue('VARIABLE'),
       Blockly.Variables.NAME_TYPE);
 
-  // Arg is a number
-  if (parseFloat(arg0.slice(1, -1)) == arg0.slice(1, -1)) {
-    arg0 = parseFloat(arg0.slice(1, -1)).toString();
-  }
+  arg0 = parseFloat(arg0).toString();
   return varName + ' += ' + arg0 + '\n';
 };
