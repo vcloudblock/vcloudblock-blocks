@@ -51,3 +51,68 @@ Blockly.Python['data_changevariableby'] = function(block) {
   arg0 = parseFloat(arg0).toString();
   return varName + ' += ' + arg0 + '\n';
 };
+
+Blockly.Python['data_showvariable'] = function() {
+  return '';
+};
+
+Blockly.Python['data_hidevariable'] = function() {
+  return '';
+};
+
+Blockly.Python['data_listcontents'] = function() {
+  return '';
+};
+
+Blockly.Python['data_listindexall'] = function() {
+  return '';
+};
+
+Blockly.Python['data_listindexrandom'] = function() {
+  return '';
+};
+
+Blockly.Python['data_addtolist'] = function() {
+  return '';
+};
+
+Blockly.Python['data_deleteoflist'] = function() {
+  return '';
+};
+
+Blockly.Python['data_deletealloflist'] = function() {
+  return '';
+};
+
+Blockly.Python['data_insertatlist'] = function() {
+  return '';
+};
+
+Blockly.Python['data_replaceitemoflist'] = function() {
+  return '';
+};
+
+Blockly.Python['data_itemoflist'] = function() {
+  return '';
+};
+
+Blockly.Python['data_itemnumoflist'] = function() {
+  return '';
+};
+
+Blockly.Python['data_lengthoflist'] = function() {
+  return '';
+};
+
+Blockly.Python['data_listcontainsitem'] = function() {
+  return '';
+};
+
+Blockly.Python['data_showlist'] = function() {
+  return '';
+};
+
+Blockly.Python['data_hidelist'] = function() {
+  return '';
+};
+

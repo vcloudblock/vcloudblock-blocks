@@ -51,3 +51,67 @@ Blockly.Arduino['data_changevariableby'] = function(block) {
   arg0 = parseFloat(arg0).toString();
   return varName + ' += ' + arg0 + ';\n';
 };
+
+Blockly.Arduino['data_showvariable'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_hidevariable'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_listcontents'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_listindexall'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_listindexrandom'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_addtolist'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_deleteoflist'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_deletealloflist'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_insertatlist'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_replaceitemoflist'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_itemoflist'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_itemnumoflist'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_lengthoflist'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_listcontainsitem'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_showlist'] = function() {
+  return '';
+};
+
+Blockly.Arduino['data_hidelist'] = function() {
+  return '';
+};
