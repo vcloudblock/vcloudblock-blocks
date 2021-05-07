@@ -105,11 +105,6 @@ Blockly.Arduino.INDENT = '  ';
 Blockly.Arduino.firstLoop = true;
 
 /**
- * For esp32
- */
-Blockly.Arduino.esp32PwmChannelCount = -1;
-
-/**
  * Initialise the database of variable names.
  * @param {!Blockly.Workspace} workspace Workspace to generate code from.
  */
@@ -230,7 +225,6 @@ Blockly.Arduino.finish = function(code) {
   delete Blockly.Arduino.loop_;
   Blockly.Arduino.variableDB_.reset();
   Blockly.Arduino.firstLoop = true;
-  Blockly.Arduino.esp32PwmChannelCount = -1;
 
   return ret;
 };
@@ -345,16 +339,4 @@ Blockly.Arduino.check_ = function(block) {
     }
   }
   return true;
-};
-
-/**
- * For esp32 get/allocat limited pwm channel
- * @param {boolean} isAllocat - wrther allocat a new channel.
- * @return {number} available pwm channel.
- */
-Blockly.Arduino.esp32GetPwmChannel = function(isAllocat) {
-  if (isAllocat) {
-    Blockly.Arduino.esp32PwmChannelCount++;
-  }
-  return Blockly.Arduino.esp32PwmChannelCount;
 };
