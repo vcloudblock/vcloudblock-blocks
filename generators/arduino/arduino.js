@@ -126,7 +126,7 @@ Blockly.Arduino['arduino_serial_serialReadData'] = function() {
 
 Blockly.Arduino['arduino_serial_multiSerialBegin'] = function(block) {
   var arg0 = block.getFieldValue('NO') || '0';
-  var arg1 = Blockly.Arduino.valueToCode(block, 'VALUE', Blockly.Arduino.ORDER_UNARY_POSTFIX) || '9600';
+  var arg1 = block.getFieldValue('VALUE') || '9600';
 
   var code;
   if(arg0 === '0')
