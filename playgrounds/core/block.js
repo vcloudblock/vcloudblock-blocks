@@ -1182,9 +1182,15 @@ Blockly.Block.prototype.setEnabled = function(enabled) {
     this.disabled = !enabled;
 
     for (var i = 0, input; input = this.inputList[i]; i++) {
-      for (var j = 0, field; field = input.fieldRow[j]; j++) {
-        field.updateColour();
+      if (input.name && (input.type === Blockly.INPUT_VALUE)) {
+        var targetBlock = this.getInputTargetBlock(input.name);
+        targetBlock.setEnabled(enabled);
+        targetBlock.updateColour();
       }
+    }
+
+    if (this.rendered) {
+      this.updateColour();
     }
   }
 };

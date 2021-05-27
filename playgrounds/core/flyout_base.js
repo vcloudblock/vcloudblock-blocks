@@ -520,7 +520,7 @@ Blockly.Flyout.prototype.show = function(xmlList) {
           // Do not enable these blocks as a result of capacity filtering.
           this.permanentlyDisabled_.push(curBlock);
         }
-        this.blockContents_.push(curBlock);
+        this.blockContents_ = this.blockContents_.concat(curBlock.getDescendants());
 
         contents.push({type: 'block', block: curBlock});
         var gap = parseInt(xml.getAttribute('gap'), 10);
