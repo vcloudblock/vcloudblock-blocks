@@ -1592,30 +1592,9 @@ Blockly.WorkspaceSvg.prototype.updateWorkspaceDisabled = function() {
       return item.type === block.type;
     });
 
-    // These block is basic block witch inside the other blocks, or is
-    // self made block. ingore them when we disable the block according to
-    // whether it is also in flyout.
     var ignoreList = [
-      // Self made block
-      'procedures_definition',
-      'procedures_prototype',
-      'argument_reporter_number',
-      'argument_reporter_string',
-      'argument_reporter_boolean',
-      // colour
-      'colour_picker',
-      // math
-      'math_number',
-      'math_integer',
-      'math_whole_number',
-      'math_positive_number',
-      'math_angle',
-      // matrix
-      'matrix',
-      // note
-      'note',
-      // text
-      'text'
+      // This self define function will not generate in flyout.
+      'procedures_definition'
     ];
 
     // if a block in workspace can not find the same type block in flyout.
