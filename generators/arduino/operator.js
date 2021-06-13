@@ -180,7 +180,7 @@ Blockly.Arduino['operator_mathop'] = function(block) {
       code = 'floor(' + arg0 + ')';
       break;
     case 'ceiling':
-      code = 'ceiling(' + arg0 + ')';
+      code = 'ceil(' + arg0 + ')';
       break;
     case 'sqrt':
       code = 'sqrt(' + arg0 + ')';
