@@ -335,10 +335,6 @@ Blockly.FieldMatrix.prototype.showEditor_ = function() {
   // Button to clear matrix
   var clearButtonDiv = document.createElement('div');
   clearButtonDiv.className = 'scratchMatrixButtonDiv';
-  // 标记，此处注入了整体的颜色
-  // var clearButton = this.createButton_('#FF8C1A');
-  // console.log('this.sourceBlock_.getParent', this.sourceBlock_.getParent().getColour())
-  // console.log('this.sourceBlock_.type', this.sourceBlock_.type)
   var clearButton = this.createButton_(this.sourceBlock_.colourSecondary_);
   clearButtonDiv.appendChild(clearButton);
   // Button to fill matrix
@@ -350,8 +346,6 @@ Blockly.FieldMatrix.prototype.showEditor_ = function() {
   buttonDiv.appendChild(clearButtonDiv);
   buttonDiv.appendChild(fillButtonDiv);
   div.appendChild(buttonDiv);
-
-  // console.log("sourceBlock_.getColour = ", this.sourceBlock_.getColour())
 
   Blockly.DropDownDiv.setColour(this.sourceBlock_.getColour(),
       this.sourceBlock_.getColourTertiary());
@@ -411,9 +405,6 @@ Blockly.FieldMatrix.prototype.createButton_ = function(fill) {
 Blockly.FieldMatrix.prototype.updateMatrix_ = function() {
   for (var i = 0; i < this.matrix_.length; i++) {
     if (this.matrix_[i] === '0') {
-      // TODO 看看这里的color是从哪里跑偏的
-      // console.log('this.sourceBlock_', this.sourceBlock_.type)
-      // console.log('this.sourceBlock_.getParent', this.sourceBlock_.getParent().type)
       this.fillMatrixNode_(this.ledButtons_, i, this.sourceBlock_.colourSecondary_);
       this.fillMatrixNode_(this.ledThumbNodes_, i, this.sourceBlock_.colour_);
     } else {

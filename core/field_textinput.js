@@ -96,6 +96,9 @@ Blockly.FieldTextInput.TEXT_MEASURE_PADDING_MAGIC = 45;
  */
 Blockly.FieldTextInput.htmlInput_ = null;
 
+Blockly.FieldTextInput.ERROR_COLOR = '#FFAAAA';
+Blockly.FieldTextInput.DEFAULT_COLOR = '#FFFFFF';
+
 /**
  * Mouse cursor style when over the hotspot that initiates the editor.
  */
@@ -460,6 +463,13 @@ Blockly.FieldTextInput.prototype.validate_ = function() {
   var htmlInput = Blockly.FieldTextInput.htmlInput_;
   if (this.sourceBlock_) {
     valid = this.callValidator(htmlInput.value);
+    if (valid !== htmlInput.value) {
+      Blockly.FieldTextInput.htmlInput_.style.backgroundColor =
+        Blockly.FieldTextInput.ERROR_COLOR;
+    } else {
+      Blockly.FieldTextInput.htmlInput_.style.backgroundColor =
+        Blockly.FieldTextInput.DEFAULT_COLOR;
+    }
   }
   if (valid === null) {
     Blockly.utils.addClass(htmlInput, 'blocklyInvalidInput');

@@ -1018,6 +1018,39 @@ Blockly.Css.CONTENT = [
     'pointer-events: none;',
   '}',
 
+  '.scratchSliderDiv {',
+    'align-items: center;',
+      'display: flex;',
+      'height: 32px;',
+      'justify-content: center;',
+      'width: 150px;',
+  '}',
+
+  '.scratchFieldSlider {',
+    '-webkit-appearance: none;',
+    'background: transparent; /* override white in chrome */',
+    'margin: 4px;',
+    'padding: 0;',
+    'width: 100%;',
+  '}',
+
+  '.scratchFieldSlider::-webkit-slider-runnable-track {',
+    'background: #ddd;',
+    'border-radius: 5px;',
+    'height: 10px;',
+  '}',
+
+  '.scratchFieldSlider::-webkit-slider-thumb {',
+    '-webkit-appearance: none;',
+    'background: #fff;',
+    'border-radius: 50%;',
+    'box-shadow: 0 0 0 4px rgba(255,255,255,.15);',
+    'cursor: pointer;',
+    'height: 24px;',
+    'margin-top: -7px;',
+    'width: 24px;',
+  '}',
+
   /* Copied from: goog/css/menu.css */
   /*
    * Copyright 2009 The Closure Library Authors. All Rights Reserved.
