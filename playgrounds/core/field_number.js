@@ -53,6 +53,8 @@ goog.require('goog.userAgent');
  */
 Blockly.FieldNumber = function(opt_value, opt_min, opt_max, opt_precision,
     opt_validator) {
+  this.min_ = opt_min;
+  this.max_ = opt_max;
   var numRestrictor = this.getNumRestrictor(opt_min, opt_max, opt_precision);
   opt_value = (opt_value && !isNaN(opt_value)) ? String(opt_value) : '0';
   Blockly.FieldNumber.superClass_.constructor.call(
@@ -361,6 +363,28 @@ Blockly.FieldNumber.prototype.onHide_ = function() {
   // Clear accessibility properties
   Blockly.DropDownDiv.content_.removeAttribute('role');
   Blockly.DropDownDiv.content_.removeAttribute('aria-haspopup');
+};
+
+/**
+ * Ensure that number does not over the range.
+ * @param {string} text The user's text.
+ * @return {?string} A string representing a valid number, or null if invalid.
+ */
+Blockly.FieldNumber.prototype.classValidator = function(text) {
+  if (text === null) {
+    return null;
+  }
+  var n = parseFloat(text || 0);
+  if (isNaN(n)) {
+    return null;
+  }
+  if (n < this.min_) {
+    n = this.min_;
+  }
+  if (n > this.max_) {
+    n = this.max_;
+  }
+  return String(n);
 };
 
 Blockly.Field.register('field_number', Blockly.FieldNumber);
