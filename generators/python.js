@@ -88,6 +88,8 @@ Blockly.Python.ORDER_NONE = 99;             // (...)
  */
 Blockly.Python.INDENT = '  ';
 
+Blockly.Python.firstLoop = true;
+
 /**
  * Initialise the database of variable names.
  * @param {!Blockly.Workspace} workspace Workspace to generate code from.
@@ -189,10 +191,27 @@ Blockly.Python.finish = function(code) {
 
   ret += code + "\n";
 
-  // loops
+  // repeat
   if (loops.length != 0) {
-    ret += "while True:\n  # every tick\n" + Blockly.Python.INDENT;
+    // if there is no loop add a empty loop function.
+    if (Blockly.Python.firstLoop) {
+      ret += "while True:\n" + Blockly.Python.INDENT + "repeat()\n\n";
+      // replace the useless pass.
+      ret = ret.replace(/\npass\n/g, '');
+    }
+
+    ret += "def repeat():\n" + Blockly.Python.INDENT;
     ret += loops.join('\n' + Blockly.Python.INDENT) + "\n\n";
+  } else {
+    // if no repeat delet all repeat() call in code.
+    var repeatFunctions = ret.match(/:\n *repeat\(\)\n/g);
+
+    for (var func in repeatFunctions) {
+      var spaceLength = repeatFunctions[func].match(/\s+/g)[0].length;
+      ret = ret.replace(/:\n *repeat\(\)\n/, ':\n' + ' '.repeat(spaceLength) + 'pass\n');
+    }
+
+    ret = ret.replace(/ *repeat\(\)\n/g, '');
   }
 
   // Clean up temporary data.
@@ -204,6 +223,7 @@ Blockly.Python.finish = function(code) {
   delete Blockly.Python.customFunctions_;
   delete Blockly.Python.customFunctionsArgName_;
   Blockly.Python.variableDB_.reset();
+  Blockly.Python.firstLoop = true;
 
   return ret;
 };
