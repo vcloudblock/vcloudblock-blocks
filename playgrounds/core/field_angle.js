@@ -47,7 +47,7 @@ Blockly.FieldAngle = function(opt_value, opt_validator) {
   // Add degree symbol: '360°' (LTR) or '°360' (RTL)
   this.symbol_ = Blockly.utils.createSvgElement('tspan', {}, null);
   this.symbol_.appendChild(document.createTextNode('\u00B0'));
-  
+
   var numRestrictor = new RegExp("[\\d]|[\\.]|[-]|[eE]");
 
   opt_value = (opt_value && !isNaN(opt_value)) ? String(opt_value) : '0';
@@ -106,7 +106,7 @@ Blockly.FieldAngle.OFFSET = 90;
  * Maximum allowed angle before wrapping.
  * Usually either 360 (for 0 to 359.9) or 180 (for -179.9 to 180).
  */
-Blockly.FieldAngle.WRAP = 180;
+Blockly.FieldAngle.WRAP = 360;
 
 /**
  * Radius of drag handle

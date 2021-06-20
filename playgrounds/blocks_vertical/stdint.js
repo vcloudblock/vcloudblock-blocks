@@ -104,7 +104,7 @@ Blockly.Blocks['math_uint10_number'] = {
           "value": "0",
           "precision": 1,
           "min": "0",
-          "max": "1024"
+          "max": "1023"
         }
       ],
       "output": "Number",
