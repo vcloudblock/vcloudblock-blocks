@@ -488,6 +488,7 @@ Blockly.VerticalFlyout.prototype.addBlockListeners_ = function(root, block,
 
   this.listeners_.push(Blockly.bindEvent_(this.svgGroup_, 'mouseenter', this, this.flyoutMouseEnter_));
   this.listeners_.push(Blockly.bindEvent_(this.svgGroup_, 'mouseleave', this, this.flyoutMouseLeave_));
+  this.listeners_.push(Blockly.bindEvent_(this.svgGroup_, 'wheel', this, this.flyoutMouseEnter_));
 };
 
 /**
