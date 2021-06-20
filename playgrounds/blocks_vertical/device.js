@@ -24,7 +24,6 @@ goog.provide('Blockly.Blocks.device');
 
 goog.require('Blockly.Blocks');
 goog.require('Blockly.Colours');
-goog.require('Blockly.ScratchBlocks.VerticalExtensions');
 
 
 Blockly.Blocks['event_whenarduinobegin'] = {
@@ -154,6 +153,96 @@ Blockly.Blocks['event_whenmicrobitgesture'] = {
       "colour": Blockly.Colours.event.primary,
       "colourSecondary": Blockly.Colours.event.secondary,
       "colourTertiary": Blockly.Colours.event.tertiary
+    });
+  }
+};
+
+Blockly.Blocks['math_int8_number'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_slider",
+          "name": "NUM",
+          "value": "0",
+          "precision": 1,
+          "min": "-127",
+          "max": "127"
+        }
+      ],
+      "output": "Number",
+      "outputShape": Blockly.OUTPUT_SHAPE_ROUND,
+      "colour": Blockly.Colours.textField,
+      "colourSecondary": Blockly.Colours.textField,
+      "colourTertiary": Blockly.Colours.textField
+    });
+  }
+};
+
+Blockly.Blocks['math_uint8_number'] = {
+  init: function() {
+    this.jsonInit({
+      message0: "%1",
+      args0: [
+        {
+          type: "field_slider",
+          name: "NUM",
+          value: "0",
+          min: "0",
+          max: "255"
+        }
+      ],
+      output: "Number",
+      outputShape: Blockly.OUTPUT_SHAPE_ROUND,
+      colour: Blockly.Colours.textField,
+      colourSecondary: Blockly.Colours.textField,
+      colourTertiary: Blockly.Colours.textField
+    });
+  }
+};
+
+Blockly.Blocks['math_int9_number'] = {
+  init: function() {
+    this.jsonInit({
+      message0: "%1",
+      args0: [
+        {
+          type: "field_slider",
+          name: "NUM",
+          value: "0",
+          min: "0",
+          max: "255"
+        }
+      ],
+      output: "Number",
+      outputShape: Blockly.OUTPUT_SHAPE_ROUND,
+      colour: Blockly.Colours.textField,
+      colourSecondary: Blockly.Colours.textField,
+      colourTertiary: Blockly.Colours.textField
+    });
+  }
+};
+
+Blockly.Blocks['math_uint10_number'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_slider",
+          "name": "NUM",
+          "value": "0",
+          "precision": 1,
+          "min": "0",
+          "max": "1024"
+        }
+      ],
+      "output": "Number",
+      "outputShape": Blockly.OUTPUT_SHAPE_ROUND,
+      "colour": Blockly.Colours.textField,
+      "colourSecondary": Blockly.Colours.textField,
+      "colourTertiary": Blockly.Colours.textField
     });
   }
 };
