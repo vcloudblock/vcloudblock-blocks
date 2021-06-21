@@ -36,9 +36,10 @@ Blockly.Python['math_number'] = function(block) {
   return [code, order];
 };
 
-Blockly.Python['math_angle'] = Blockly.Python['math_number'];
-Blockly.Python['math_positive_number'] = Blockly.Python['math_number'];
+Blockly.Python['math_integer'] = Blockly.Python['math_number'];
 Blockly.Python['math_whole_number'] = Blockly.Python['math_number'];
+Blockly.Python['math_positive_number'] = Blockly.Python['math_number'];
+Blockly.Python['math_angle'] = Blockly.Python['math_number'];
 
 Blockly.Python['math_int8_number'] = Blockly.Python['math_number'];
 Blockly.Python['math_uint8_number'] = Blockly.Python['math_number'];

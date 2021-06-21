@@ -36,9 +36,10 @@ Blockly.Arduino['math_number'] = function(block) {
   return [code, order];
 };
 
-Blockly.Arduino['math_angle'] = Blockly.Arduino['math_number'];
-Blockly.Arduino['math_positive_number'] = Blockly.Arduino['math_number'];
+Blockly.Arduino['math_integer'] = Blockly.Arduino['math_number'];
 Blockly.Arduino['math_whole_number'] = Blockly.Arduino['math_number'];
+Blockly.Arduino['math_positive_number'] = Blockly.Arduino['math_number'];
+Blockly.Arduino['math_angle'] = Blockly.Arduino['math_number'];
 
 Blockly.Arduino['math_int8_number'] = Blockly.Arduino['math_number'];
 Blockly.Arduino['math_uint8_number'] = Blockly.Arduino['math_number'];
