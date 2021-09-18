@@ -207,12 +207,12 @@ Blockly.Arduino['arduino_data_dataConstrain'] = function(block) {
 
 Blockly.Arduino['arduino_data_dataConvert'] = function(block) {
   var arg0 = Blockly.Arduino.valueToCode(block, 'DATA', Blockly.Arduino.ORDER_UNARY_POSTFIX) || 0;
-  var arg1 = block.getFieldValue('TYPE') || 'WHOLE_NUMBER';
+  var arg1 = block.getFieldValue('TYPE') || 'INTEGER';
 
   var code;
 
   switch(arg1) {
-    case 'WHOLE_NUMBER':
+    case 'INTEGER':
       code = 'String(' + arg0 + ').toInt()';
       break;
     case 'DECIMAL':
