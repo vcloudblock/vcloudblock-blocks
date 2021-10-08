@@ -766,7 +766,6 @@ Blockly.ScratchBlocks.ProcedureUtils.updateArgumentReporterNames_ = function(pre
     var block = allBlocks[i];
     if ((block.type === 'argument_reporter_number' ||
         block.type === 'argument_reporter_string' ||
-        block.type === 'argument_reporter_string_number' ||
         block.type === 'argument_reporter_boolean') &&
         !block.isShadow()) { // Exclude arg reporters in the prototype block, which are shadows.
       argReporters.push(block);
@@ -977,21 +976,6 @@ Blockly.Blocks['argument_reporter_string'] = {
   }
 };
 
-Blockly.Blocks['argument_reporter_string_number'] = {
-  init: function() {
-    this.jsonInit({ "message0": " %1",
-      "args0": [
-        {
-          "type": "field_label_serializable",
-          "name": "VALUE",
-          "text": ""
-        }
-      ],
-      "extensions": ["colours_more", "output_number", "output_string"]
-    });
-  }
-};
-
 Blockly.Blocks['argument_editor_boolean'] = {
   init: function() {
     this.jsonInit({ "message0": " %1",
@@ -1046,26 +1030,6 @@ Blockly.Blocks['argument_editor_string'] = {
       "colourSecondary": Blockly.Colours.textField,
       "colourTertiary": Blockly.Colours.textField,
       "extensions": ["output_string"]
-    });
-  },
-  // Exist on declaration and arguments editors, with different implementations.
-  removeFieldCallback: Blockly.ScratchBlocks.ProcedureUtils.removeArgumentCallback_
-};
-
-Blockly.Blocks['argument_editor_string_number'] = {
-  init: function() {
-    this.jsonInit({ "message0": " %1",
-      "args0": [
-        {
-          "type": "field_input_removable",
-          "name": "TEXT",
-          "text": "foo"
-        }
-      ],
-      "colour": Blockly.Colours.textField,
-      "colourSecondary": Blockly.Colours.textField,
-      "colourTertiary": Blockly.Colours.textField,
-      "extensions": ["output_number", "output_string"]
     });
   },
   // Exist on declaration and arguments editors, with different implementations.
