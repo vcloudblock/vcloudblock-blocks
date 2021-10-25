@@ -1594,7 +1594,11 @@ Blockly.WorkspaceSvg.prototype.updateWorkspaceBlocksDisabledState = function() {
 
     var ignoreList = [
       // This self define function will not generate in flyout.
-      'procedures_definition'
+      'procedures_definition',
+      'argument_reporter_string_number',
+      'argument_reporter_number',
+      'argument_reporter_string',
+      'argument_reporter_boolean',
     ];
 
     // if a block in workspace can not find the same type block in flyout.
