@@ -74,7 +74,9 @@ Blockly.Arduino.addReservedWords(
   'analogWrite,tone,noTone,shiftOut,shitIn,pulseIn,millis,micros,delay,' +
   'delayMicroseconds,min,max,constrain,map,randomSeed,random,lowByte,' +
   'highByte,bitRead,bitWrite,bitSet,bitClear,bit,attachInterrupt,' +
-  'detachInterrupt,interrupts,noInterrupts'
+  'detachInterrupt,interrupts,noInterrupts,' +
+  // Used by code generator
+  'index'
 );
 
 /**
