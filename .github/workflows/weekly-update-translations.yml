@@ -7,8 +7,6 @@ on:
 jobs:
   weekly-update:
     runs-on: ubuntu-latest
-    env:
-      NPM_TAG: latest
     steps:
       - uses: actions/checkout@v2
 
