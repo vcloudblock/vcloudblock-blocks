@@ -1,0 +1,95 @@
+name: Weekly Update Translations
+
+on:
+  schedule:
+    - cron: '0 1 * * 1,4' # Runs at 01:00 UTC on Tuesday and Saturday
+
+jobs:
+  weekly-update:
+    runs-on: ubuntu-latest
+    env:
+      NPM_TAG: latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '2.x'
+
+      - run: npm ci
+
+      - name: Update openblock-l10n
+        run: npm i --save openblock-l10n@latest
+
+      - name: Sync translations
+        run: |
+          export TX_TOKEN=${{ secrets.TX_TOKEN }}
+          npm run translate
+          npm run translate:update
+          npm run test:messages
+
+      - name: Check for modified files
+        id: git-check
+        run: echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
+
+      - name: Update translations changes in GitHub repository
+        if: steps.git-check.outputs.modified == 'true'
+        id: git-push
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          git add .
+          git commit -m '[skip ci] Update translations from transifex'
+          git remote add origin-translation https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git push --set-upstream origin-translation develop
+
+      - name: Set test env
+        if: steps.git-push.conclusion == 'success'
+        run: |
+          export DISPLAY=:99.0
+          tests/scripts/setup_linux_env.sh
+          sleep 2
+
+      - run: npm test
+        if: steps.git-push.conclusion == 'success'
+
+      - name: Get package main version
+        if: steps.git-push.conclusion == 'success'
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@v1.1.0
+
+      - name: Generate release version
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          echo "RELEASE_VERSION=${{ steps.package-version.outputs.current-version }}-prerelease.$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
+
+      - name: Set package version
+        if: steps.git-check.outputs.modified == 'true'
+        run: npm --no-git-tag-version version $RELEASE_VERSION
+
+      - name: Tag release
+        if: steps.git-check.outputs.modified == 'true'
+        run: |
+          git tag $RELEASE_VERSION
+          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY $RELEASE_VERSION
+
+      - uses: JS-DevTools/npm-publish@v1
+        if: steps.git-check.outputs.modified == 'true'
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
