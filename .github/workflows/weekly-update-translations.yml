@@ -40,14 +40,25 @@ jobs:
           export TX_TOKEN=${{ secrets.TX_TOKEN }}
           npm run translate
           npm run translate:update
-          npm run test:messages
 
       - name: Check for modified files
         id: git-check
-        run: echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
+        # Check if there are any files update, but ignore the case where only package-lock.json is updated.
+        run: |
+          echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ] && [ "$(git status --porcelain)" != " M package-lock.json" ]; then echo "true"; else echo "false"; fi)
+
+      - name: Set test env
+        if: ${{ steps.git-push.conclusion == 'success' }}
+        run: |
+          export DISPLAY=:99.0
+          tests/scripts/setup_linux_env.sh
+          sleep 2
+
+      - run: npm test
+        if: ${{ steps.git-push.conclusion == 'success' }}
 
       - name: Update translations changes in GitHub repository
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         id: git-push
         run: |
           git config --global user.name github-actions
@@ -57,37 +68,27 @@ jobs:
           git remote add origin-translation https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY
           git push --set-upstream origin-translation develop
 
-      - name: Set test env
-        if: steps.git-push.conclusion == 'success'
-        run: |
-          export DISPLAY=:99.0
-          tests/scripts/setup_linux_env.sh
-          sleep 2
-
-      - run: npm test
-        if: steps.git-push.conclusion == 'success'
-
       - name: Get package main version
-        if: steps.git-push.conclusion == 'success'
+        if: ${{ steps.git-push.conclusion == 'success' }}
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.1.0
 
       - name: Generate release version
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
           echo "RELEASE_VERSION=${{ steps.package-version.outputs.current-version }}-prerelease.$(date +'%Y%m%d%H%M%S')" >> $GITHUB_ENV
 
       - name: Set package version
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: npm --no-git-tag-version version $RELEASE_VERSION
 
       - name: Tag release
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
           git tag $RELEASE_VERSION
           git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY $RELEASE_VERSION
 
       - uses: JS-DevTools/npm-publish@v1
-        if: steps.git-check.outputs.modified == 'true'
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
         with:
           token: ${{ secrets.NPM_TOKEN }}
