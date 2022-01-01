@@ -84,21 +84,14 @@ jobs:
           export TX_TOKEN=${{ secrets.TX_TOKEN }}
           npm run translate
           npm run translate:update
-          npm run test:messages
 
       - name: Check for modified files
         id: git-check
-        run: echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
-
-      - name: Commit translations
-        if: steps.git-check.outputs.modified == 'true'
+        # Check if there are any files update, but temporarily add package-lock.json to gitignore, prevent
+        # only the package-lock.json is updated during the npm ci process.
         run: |
-          git config --global user.name github-actions
-          git config --global user.email github-actions@github.com
-          git add .
-          git commit -m '[skip ci] Update translations from transifex'
-          git remote add origin-translation https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git push --set-upstream origin-translation develop
+          echo 'package-lock.json' >> .gitignore
+          echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ]; then echo "true"; else echo "false"; fi)
 
       - name: Set test env
         run: |
@@ -107,6 +100,16 @@ jobs:
           sleep 2
 
       - run: npm test
+
+      - name: Commit translations
+        if: ${{ steps.git-check.outputs.modified == 'true' }}
+        run: |
+          git config --global user.name github-actions
+          git config --global user.email github-actions@github.com
+          git add .
+          git commit -m '[skip ci] Update translations from transifex'
+          git remote add origin-translation https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git push --set-upstream origin-translation develop
 
       - name: Get package main version
         id: package-version
