@@ -272,10 +272,9 @@ Blockly.Arduino.scrub_ = function(block, code) {
   }
 
   var codeWithIndent = code;
-  // At this step if block is not surround by a parent and it is not empty and it's not
-  // a control_forever block. mean's it is in setup() function or it is custom function,
-  // add indent at start of every line.
-  if (block.getSurroundParent() === null && code !== "" && block.type !== 'control_forever') {
+  // Add indent at start of every line for the code in setup() function or custom function.
+  if (block.getSurroundParent() === null && code !== ""
+    && (block.type !== 'control_forever' || block.getRootBlock().type !== 'event_whenarduinobegin')) {
     // Add indent at start except custom function
     if (block.type !== 'procedures_definition'
       && block.type !== 'procedures_prototype') {
