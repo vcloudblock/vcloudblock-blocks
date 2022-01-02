@@ -124,8 +124,11 @@ Blockly.Python.init = function(workspace) {
   var defvars = [];
   var variables = Blockly.Variables.allVariables(workspace);
   for (var x = 0; x < variables.length; x++) {
-    defvars[x] = Blockly.Python.variableDB_.getName(variables[x].name, Blockly.Variables.NAME_TYPE)
-      + ' = 0';
+    if (variables[x].type === Blockly.LIST_VARIABLE_TYPE) {
+      defvars[x] = Blockly.Python.variableDB_.getName(variables[x].name, Blockly.Variables.NAME_TYPE) + ' = []';
+    } else {
+      defvars[x] = Blockly.Python.variableDB_.getName(variables[x].name, Blockly.Variables.NAME_TYPE) + ' = 0';
+    }
   }
   if (variables.length > 0) {
     Blockly.Python.variables_['variables'] = defvars.join('\n');
