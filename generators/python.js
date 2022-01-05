@@ -149,7 +149,7 @@ Blockly.Python.finish = function(code) {
   for (var name in Blockly.Python.customFunctions_) {
     customFunctions.push(Blockly.Python.customFunctions_[name]);
   }
-  // Convert the libraries dictionary into a list.  // 放扩展自定义一些函数时使用
+  // Convert the libraries dictionary into a list.
   var libraries = [];
   for (var name in Blockly.Python.libraries_) {
     libraries.push(Blockly.Python.libraries_[name]);
@@ -161,7 +161,7 @@ Blockly.Python.finish = function(code) {
   }
   // Convert the setups dictionary into a list.
   var setups = [];
-  for (var name in Blockly.Python.setups_) {  // 放扩展代码初始化执行的内容
+  for (var name in Blockly.Python.setups_) {
     setups.push(Blockly.Python.setups_[name]);
   }
   // Convert the loops dictionary into a list.
