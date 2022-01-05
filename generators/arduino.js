@@ -190,7 +190,7 @@ Blockly.Arduino.finish = function(code) {
   }
   // custom function definitions
   if (customFunctions.length != 0) {
-    ret += customFunctions.join('\n\n') + "\n\n";
+    ret += customFunctions.join('\n') + "\n";
   }
 
   // setup()
