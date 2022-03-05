@@ -21,6 +21,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '2.x'
+
       - name: Set test env
         run: |
           export DISPLAY=:99.0
