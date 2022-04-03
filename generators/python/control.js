@@ -49,7 +49,8 @@ Blockly.Python['control_forever'] = function(block) {
   var branch = Blockly.Python.statementToCode(block, 'SUBSTACK');
   branch = Blockly.Python.addLoopTrap(branch, block.id);
 
-  if (block.getRootBlock().type === 'event_whenmicrobitbegin') {
+  if (block.getRootBlock().type === 'event_whenmicrobitbegin' ||
+    block.getRootBlock().type === 'event_whenmicropythonbegin') {
     Blockly.Python.firstLoop = false;
   }
 
