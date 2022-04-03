@@ -50,7 +50,7 @@ Blockly.Python['control_forever'] = function(block) {
   branch = Blockly.Python.addLoopTrap(branch, block.id);
 
   if (block.getRootBlock().type === 'event_whenmicrobitbegin' ||
-    block.getRootBlock().type === 'event_whenmicrobitbegin') {
+    block.getRootBlock().type === 'event_whenmicropythonbegin') {
     Blockly.Python.firstLoop = false;
   }
 

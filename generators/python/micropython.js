@@ -42,14 +42,14 @@ Blockly.Python['microPython_pin_menu_level'] = function(block) {
 
 Blockly.Python['microPython_pin_esp32SetDigitalOutput'] = function(block) {
   var pin = block.getFieldValue('PIN') || '0';
-  var level = Blockly.Python.valueToCode(block, 'LEVEL', Blockly.Python.ORDER_UNARY_POSTFIX) || '1';
+  var level = Blockly.Python.valueToCode(block, 'LEVEL', Blockly.Python.ORDER_FUNCTION_CALL) || '1';
   var code = 'pin' + pin + '.value(' + level + ')\n';
   return code;
 };
 
 Blockly.Python['microPython_pin_esp32SetPwmOutput'] = function(block) {
   var pin = block.getFieldValue('PIN');
-  var outValue = Blockly.Python.valueToCode(block, 'OUT', Blockly.Python.ORDER_UNARY_POSTFIX) || '0';
+  var outValue = Blockly.Python.valueToCode(block, 'OUT', Blockly.Python.ORDER_FUNCTION_CALL) || '0';
   Blockly.Python.variables_['define_pwm' + pin] = 'pwm' + pin + ' = machine.PWM(machine.Pin(' + pin + '))\n';
   var code = 'pwm' + pin + '.duty(' + outValue + ')\n';
   return code;
@@ -57,7 +57,7 @@ Blockly.Python['microPython_pin_esp32SetPwmOutput'] = function(block) {
 
 Blockly.Python['microPython_pin_esp32SetPwmFrequency'] = function(block) {
   var pin = block.getFieldValue('PIN');
-  var frequency = Blockly.Python.valueToCode(block, 'FREQ', Blockly.Python.ORDER_UNARY_POSTFIX) || '2000';
+  var frequency = Blockly.Python.valueToCode(block, 'FREQ', Blockly.Python.ORDER_FUNCTION_CALL) || '2000';
   Blockly.Python.variables_['define_pwm' + pin] = 'pwm' + pin + ' = machine.PWM(machine.Pin(' + pin + '))\n';
   var code = 'pwm' + pin + '.freq(' + frequency + ')\n';
   return code;
@@ -65,7 +65,7 @@ Blockly.Python['microPython_pin_esp32SetPwmFrequency'] = function(block) {
 
 Blockly.Python['microPython_pin_esp32SetDACOutput'] = function(block) {
   var pin = block.getFieldValue('PIN');
-  var outValue = Blockly.Python.valueToCode(block, 'OUT', Blockly.Python.ORDER_UNARY_POSTFIX) || '0';
+  var outValue = Blockly.Python.valueToCode(block, 'OUT', Blockly.Python.ORDER_FUNCTION_CALL) || '0';
   Blockly.Python.variables_['define_dac' + pin] = 'dac' + pin + ' = machine.DAC(machine.Pin(' + pin + '))\n';
   var code = 'dac' + pin + '.write(' + outValue + ')\n';
   return code;
@@ -102,7 +102,7 @@ Blockly.Python['microPython_pin_esp32ReadTouchPin'] = function(block) {
 Blockly.Python['microPython_pin_esp32SetServoOutput'] = function(block) {
   Blockly.Python.imports_['pyb'] = 'import pyb';
   var pin = block.getFieldValue('PIN');
-  var angle = Blockly.Python.valueToCode(block, 'OUT', Blockly.Python.ORDER_UNARY_POSTFIX) || '0';
+  var angle = Blockly.Python.valueToCode(block, 'OUT', Blockly.Python.ORDER_FUNCTION_CALL) || '0';
   Blockly.Python.variables_['define_servo' + pin] = 'servo' + pin + ' = pyb.Servo(' + pin + ')\n';
  
   var code = 'servo' + pin + '.angle' + '(' + angle + ');\n';
@@ -146,7 +146,7 @@ Blockly.Python['microPython_serial_esp32SerialBegin'] = function(block) {
 
 Blockly.Python['microPython_serial_esp32SerialPrint'] = function(block) {
   var no = block.getFieldValue('NO') || '1';
-  var str = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_UNARY_POSTFIX) || '';
+  var str = Blockly.Python.valueToCode(block, 'VALUE', Blockly.Python.ORDER_FUNCTION_CALL) || '';
   var eol = block.getFieldValue('EOL') || 'warp';
   var code = '';
   if (eol === 'warp') {
