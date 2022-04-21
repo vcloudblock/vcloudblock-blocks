@@ -45,7 +45,7 @@ jobs:
         run: |
           export TX_TOKEN=${{ secrets.TX_TOKEN }}
           npm run translate
-          translate:sync:translations
+          npm run translate:sync:translations
 
       - name: Check for modified files
         id: git-check
