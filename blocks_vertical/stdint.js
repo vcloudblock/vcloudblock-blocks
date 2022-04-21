@@ -2,7 +2,7 @@
  * @license
  * Visual Blocks Editor
  *
- * Copyright 2020 Arthur Zheng.
+ * Copyright 2020 openblock.cc.
  * All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
