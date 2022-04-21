@@ -27,48 +27,48 @@ goog.provide('Blockly.Device');
 
 
 /**
-    * @type {string}
-    * @protected
-    */
+ * @type {string}
+ * @protected
+ */
 Blockly.Device.deviceId = null;
 /**
-     * @type {string}
-     * @protected
-     */
+ * @type {string}
+ * @protected
+ */
 Blockly.Device.deviceType = null;
 
 /**
-  * Set current device id and type.
-  * @param {string} deviceId - The id of device.
-  * @param {string} deviceType - The type of device.
-  */
+ * Set current device id and type.
+ * @param {string} deviceId - The id of device.
+ * @param {string} deviceType - The type of device.
+ */
 Blockly.Device.setDevice = function(deviceId, deviceType) {
   Blockly.Device.deviceId = deviceId;
   Blockly.Device.deviceType = deviceType;
 };
 
 /**
-  * Get current device id.
-  * @return {string} Current device id.
-  */
+ * Get current device id.
+ * @return {string} Current device id.
+ */
 Blockly.Device.getDeviceId = function() {
   return Blockly.Device.deviceId;
 };
 
 /**
-  * Get current device type.
-  * @return {string} Current device type.
-  */
+ * Get current device type.
+ * @return {string} Current device type.
+ */
 Blockly.Device.getDeviceType = function() {
   return Blockly.Device.deviceType;
 };
 
 /**
-  * Get device pin options by block type.
-  * @param {Node|string} type Type of block.
-  * @return {!Array.<!Array>} Array of option tuples:
-  *     (human-readable text or image, language-neutral name).
-  */
+ * Get device pin options by block type.
+ * @param {Node|string} type Type of block.
+ * @return {!Array.<!Array>} Array of option tuples:
+ *     (human-readable text or image, language-neutral name).
+ */
 Blockly.Device.getPinOptions = function(type) {
   return Blockly.getMainWorkspace().getFlyout()
       .getFlyoutItems()

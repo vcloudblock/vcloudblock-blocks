@@ -67,7 +67,7 @@ Blockly.Python['microbit_display_showImage'] = function(block) {
 
   arg0 = arg0.replace(/1/g, '9');
   arg0 = arg0.slice(0, 5) + ':' + arg0.slice(5, 10) + ':' + arg0.slice(10, 15)
-     + ':' + arg0.slice(15, 20) + ':' + arg0.slice(20, 25);
+    + ':' + arg0.slice(15, 20) + ':' + arg0.slice(20, 25);
   var code = "display.show(Image('" + arg0 + "'))\n";
   return code;
 };
@@ -78,7 +78,7 @@ Blockly.Python['microbit_display_showImageUntil'] = function(block) {
 
   arg0 = arg0.replace(/1/g, '9');
   arg0 = arg0.slice(0, 5) + ':' + arg0.slice(5, 10) + ':' + arg0.slice(10, 15)
-     + ':' + arg0.slice(15, 20) + ':' + arg0.slice(20, 25);
+    + ':' + arg0.slice(15, 20) + ':' + arg0.slice(20, 25);
   var code = "display.show(Image('" + arg0 + "'))\n" + "sleep(float(" + arg1 + ") * 1000)\n" + "display.clear()\n";
   return code;
 };

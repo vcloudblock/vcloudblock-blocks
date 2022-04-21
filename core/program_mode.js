@@ -26,23 +26,23 @@
 goog.provide('Blockly.ProgramMode');
 
 /**
-  * @type {string}
-  * @protected
-  */
+ * @type {string}
+ * @protected
+ */
 Blockly.ProgramMode.programmode = 'realtime';
 
 /**
-  * Set current program mode.
-  * @param {string} mode - Current program mode.
-  */
+ * Set current program mode.
+ * @param {string} mode - Current program mode.
+ */
 Blockly.ProgramMode.setProgramMode = function(mode) {
   Blockly.ProgramMode.programmode = mode;
 };
 
 /**
-  * Get current program mode.
-  * @return {string} Current program mode.
-  */
+ * Get current program mode.
+ * @return {string} Current program mode.
+ */
 Blockly.ProgramMode.getProgramMode = function() {
   return Blockly.ProgramMode.programmode;
 };
