@@ -25,7 +25,7 @@ goog.require('Blockly.Python');
 
 Blockly.Python['microbit_pin_setDigitalOutput'] = function(block) {
   var pin = block.getFieldValue('PIN');
-  var level = Blockly.Python.valueToCode(block, 'LEVEL', Blockly.Python.ORDER_UNARY_POSTFIX) || 'LOW';
+  var level = Blockly.Python.valueToCode(block, 'LEVEL', Blockly.Python.ORDER_FUNCTION_CALL) || 'LOW';
 
   var code = "pin" + pin + ".write_digital(" + level + ")\n";
   return code;
@@ -38,7 +38,7 @@ Blockly.Python['microbit_pin_menu_level'] = function(block) {
 
 Blockly.Python['microbit_pin_setPwmOutput'] = function(block) {
   var pin = block.getFieldValue('PIN');
-  var out = Blockly.Python.valueToCode(block, 'OUT', Blockly.Python.ORDER_UNARY_POSTFIX) || '0';
+  var out = Blockly.Python.valueToCode(block, 'OUT', Blockly.Python.ORDER_FUNCTION_CALL) || '0';
 
   var code = "pin" + pin + ".write_analog(" + out + ")\n";
   return code;
@@ -67,7 +67,7 @@ Blockly.Python['microbit_display_showImage'] = function(block) {
 
   arg0 = arg0.replace(/1/g, '9');
   arg0 = arg0.slice(0, 5) + ':' + arg0.slice(5, 10) + ':' + arg0.slice(10, 15)
-    + ':' + arg0.slice(15, 20) + ':' + arg0.slice(20, 25);
+     + ':' + arg0.slice(15, 20) + ':' + arg0.slice(20, 25);
   var code = "display.show(Image('" + arg0 + "'))\n";
   return code;
 };
@@ -78,7 +78,7 @@ Blockly.Python['microbit_display_showImageUntil'] = function(block) {
 
   arg0 = arg0.replace(/1/g, '9');
   arg0 = arg0.slice(0, 5) + ':' + arg0.slice(5, 10) + ':' + arg0.slice(10, 15)
-    + ':' + arg0.slice(15, 20) + ':' + arg0.slice(20, 25);
+     + ':' + arg0.slice(15, 20) + ':' + arg0.slice(20, 25);
   var code = "display.show(Image('" + arg0 + "'))\n" + "sleep(float(" + arg1 + ") * 1000)\n" + "display.clear()\n";
   return code;
 };
@@ -116,7 +116,7 @@ Blockly.Python['microbit_display_lightPixelAt'] = function(block) {
 };
 
 Blockly.Python['microbit_display_showOnPiexlbrightness'] = function(block) {
-  var brt = block.getFieldValue('BRT');
+  var brt = Blockly.Python.valueToCode(block, 'BRT', Blockly.Python.ORDER_FUNCTION_CALL) || '9';
   var x = Blockly.Python.valueToCode(block, 'X', Blockly.Python.ORDER_FUNCTION_CALL) || '';
   var y = Blockly.Python.valueToCode(block, 'Y', Blockly.Python.ORDER_FUNCTION_CALL) || '';
 
@@ -124,8 +124,8 @@ Blockly.Python['microbit_display_showOnPiexlbrightness'] = function(block) {
   return code;
 };
 
-Blockly.Python['microbit_sensor_menu_ledBrightness'] = function(block) {
-  var code = block.getFieldValue('ledBrightness') || '0';
+Blockly.Python['microbit_display_menu_ledBrightness'] = function(block) {
+  var code = block.getFieldValue('ledBrightness') || '9';
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
