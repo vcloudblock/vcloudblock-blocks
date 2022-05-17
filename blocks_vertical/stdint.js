@@ -162,3 +162,25 @@ Blockly.Blocks['math_0to100_number'] = {
     });
   }
 };
+
+Blockly.Blocks['math_half_angle'] = {
+  init: function() {
+    this.jsonInit({
+      "message0": "%1",
+      "args0": [
+        {
+          "type": "field_angle",
+          "name": "NUM",
+          "value": 90,
+          "max": 180
+        }
+      ],
+      "output": "Number",
+      "outputShape": Blockly.OUTPUT_SHAPE_ROUND,
+      "colour": Blockly.Colours.textField,
+      "colourSecondary": Blockly.Colours.textField,
+      "colourTertiary": Blockly.Colours.textField
+    });
+  }
+};
+
