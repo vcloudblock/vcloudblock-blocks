@@ -67,7 +67,7 @@ Blockly.Arduino['arduino_pin_setServoOutput'] = function(block) {
 
   Blockly.Arduino.includes_['include_servo'] = '#include <Servo.h>';
   Blockly.Arduino.definitions_['definitions_servo' + arg0] = 'Servo servo_' + arg0 + ';';
-  Blockly.Arduino.setups_['setups_servo' + arg0] = 'servo_' + arg0 + '.attach' + '(' + arg0 + ');';
+  Blockly.Arduino.setups_['setups_servo' + arg0] = 'servo_' + arg0 + '.attach' + '(' + arg0 + ', 544, 2400);';
 
   var code = 'servo_' + arg0 + '.write' + '(' + arg1 + ');\n';
   return code;
