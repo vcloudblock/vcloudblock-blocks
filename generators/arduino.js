@@ -314,6 +314,7 @@ Blockly.Arduino.quote_ = function(string) {
   string = string.replace(/\\/g, '\\\\')
       .replace(/\n/g, '\\\n')
       .replace(/\$/g, '\\$')
+      .replace(/"/g, '\\"')
       .replace(/'/g, '\\\'');
   return '"' + string + '"';
 };
