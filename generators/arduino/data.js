@@ -34,6 +34,9 @@ Blockly.Arduino['data_setvariableto'] = function(block) {
       Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
   var varName = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VARIABLE'),
       Blockly.Variables.NAME_TYPE);
+  if (varName === 'unnamed') {
+    return '';
+  }
 
   // Arg is a number
   if (parseFloat(arg0.slice(1, -1)) == arg0.slice(1, -1)) {
@@ -47,6 +50,9 @@ Blockly.Arduino['data_changevariableby'] = function(block) {
       Blockly.Arduino.ORDER_ASSIGNMENT) || '0';
   var varName = Blockly.Arduino.variableDB_.getName(block.getFieldValue('VARIABLE'),
       Blockly.Variables.NAME_TYPE);
+  if (varName === 'unnamed') {
+    return '';
+  }
 
   return varName + ' += ' + arg0 + ';\n';
 };
