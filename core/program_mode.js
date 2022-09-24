@@ -25,11 +25,24 @@
 
 goog.provide('Blockly.ProgramMode');
 
+
+/**
+ * String representing the program mode
+ * @const {string}
+ */
+Blockly.ProgramMode.REALTIME = 'realtime';
+
+/**
+ * String representing the program mode
+ * @const {string}
+ */
+Blockly.ProgramMode.UPLOAD = 'upload';
+
 /**
  * @type {string}
  * @protected
  */
-Blockly.ProgramMode.programmode = 'realtime';
+Blockly.ProgramMode.programmode = Blockly.ProgramMode.REALTIME;
 
 /**
  * Set current program mode.

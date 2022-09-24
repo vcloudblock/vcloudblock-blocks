@@ -34,6 +34,7 @@ goog.require('Blockly.Events.VarCreate');
 goog.require('Blockly.FlyoutButton');
 goog.require('Blockly.FlyoutExtensionCategoryHeader');
 goog.require('Blockly.Gesture');
+goog.require('Blockly.ProgramMode');
 goog.require('Blockly.scratchBlocksUtils');
 goog.require('Blockly.Touch');
 goog.require('Blockly.WorkspaceSvg');
@@ -553,9 +554,21 @@ Blockly.Flyout.prototype.show = function(xmlList) {
           // Do not enable these blocks as a result of capacity filtering.
           this.permanentlyDisabled_.push(curBlock);
         }
-        this.blockContents_ = this.blockContents_.concat(curBlock.getDescendants());
 
-        contents.push({type: 'block', block: curBlock});
+        // Hide the unsupported veriable blocks in upload mode.
+        var unsupportedBlocksInUploadMode = [
+          'data_showlist',
+          'data_hidelist',
+          'data_showvariable',
+          'data_hidevariable'
+        ];
+        if (!(Blockly.ProgramMode.getProgramMode() === Blockly.ProgramMode.UPLOAD &&
+          unsupportedBlocksInUploadMode.includes(curBlock.type))) {
+          this.blockContents_ = this.blockContents_.concat(curBlock.getDescendants());
+
+          contents.push({type: 'block', block: curBlock});
+        }
+
         var gap = parseInt(xml.getAttribute('gap'), 10);
         gaps.push(isNaN(gap) ? default_gap : gap);
       } else if (xml.tagName.toUpperCase() == 'SEP') {
