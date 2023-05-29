@@ -7,7 +7,7 @@ index 5913b7bf..1e27cd5d 100755
    // Load fresh Closure Library.
    document.write('<script src="' + window.BLOCKLY_DIR +
 -      '/{closure_dir}/{closure_library}/closure/goog/base.js"></script>');
-+      '/closure-library/closure/goog/base.js"></script>');
++      '/../closure-library/closure/goog/base.js"></script>');
    document.write('<script>window.BLOCKLY_BOOT();</script>');
  }
  """))
