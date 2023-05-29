@@ -53,6 +53,10 @@ jobs:
         run: |
           echo ::set-output name=modified::$(if [ -n "$(git status --porcelain)" ] && [ "$(git status --porcelain)" != " M package-lock.json" ]; then echo "true"; else echo "false"; fi)
 
+      - uses: nanasess/setup-chromedriver@v2
+        with:
+          chromedriver-version: '113.0.5672.63'
+
       - name: Set test env
         if: ${{ steps.git-check.outputs.modified == 'true' }}
         run: |
