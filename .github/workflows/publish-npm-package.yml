@@ -139,6 +139,10 @@ jobs:
           git tag $RELEASE_VERSION
           git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/$GITHUB_REPOSITORY $RELEASE_VERSION
 
+      - name: Deploy gh-page
+        run: |
+          export GITHUB_TOKEN=${{ secrets.GH_TOKEN }}
+
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
