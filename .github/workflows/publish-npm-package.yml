@@ -95,7 +95,7 @@ jobs:
       - name: Update openblock-l10n
         run: npm i --save openblock-l10n@latest
 
-      # Don't push translations to TX, just pull, The push step will be run by the enterprise edition repository.
+      # Don't push translations to TX, just pull, The push step will be run by the distro repository.
       # - name: Sync translations
       #   run: |
       #     export TX_TOKEN=${{ secrets.TX_TOKEN }}
