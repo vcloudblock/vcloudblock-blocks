@@ -37,6 +37,9 @@ jobs:
 
       - name: Set test env
         run: |
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          CHROME_MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d '.' -f 1)
+          npm install --save-dev chromedriver@$CHROME_MAJOR_VERSION
           export DISPLAY=:99.0
           tests/scripts/setup_linux_env.sh
           sleep 2
