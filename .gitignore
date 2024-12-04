@@ -40,6 +40,8 @@ LICENSE.chromedriver
 /blocks_compressed_horizontal.js
 /blocks_compressed_vertical.js
 /blocks_compressed.js
+/blockly_compressed_horizontal.js.config
+/blockly_compressed_vertical.js.config
 /gh-pages/main.js
 /gh-pages/playgrounds
 /gh-pages/Gemfile.lock
@@ -48,3 +50,4 @@ LICENSE.chromedriver
 /*compiler*.jar
 /local_blockly_compressed_vertical.js
 /chromedriver
+
