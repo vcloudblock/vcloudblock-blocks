@@ -7,7 +7,7 @@
   "homepage": "https://github.com/vcloudblock/vcloudblock-blocks#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vcloudblock/vcloudblock-blocks.git"
+    "url": "git+git@github.com:vcloudblock/vcloudblock-blocks.git"
   },
   "main": "./dist/vertical.js",
   "browser": "./shim/vertical.js",
@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "async": "2.6.3",
-    "chromedriver": "^126.0.5",
+    "chromedriver": "^131.0.2",
     "closure-webpack-plugin": "^2.6.1",
     "copy-webpack-plugin": "4.6.0",
     "eslint": "4.19.1",
