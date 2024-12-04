@@ -7,7 +7,7 @@
   "homepage": "https://github.com/vcloudblock/vcloudblock-blocks#readme",
   "repository": {
     "type": "git",
-    "url": "git+git@github.com:vcloudblock/vcloudblock-blocks.git"
+    "url": "https://github.com/vcloudblock/vcloudblock-blocks.git"
   },
   "main": "./dist/vertical.js",
   "browser": "./shim/vertical.js",
@@ -30,11 +30,11 @@
     "google-closure-library": "20190301.0.0",
     "imports-loader": "0.6.5",
     "vcloudblock-blocks": "file:",
-    "vcloudblock-l10n": "git+https://github.com/vcloudblock/vcloudblock-l10n.git"
+    "vcloudblock-l10n": "3.15.0"
   },
   "devDependencies": {
     "async": "2.6.3",
-    "chromedriver": "^131.0.2",
+    "chromedriver": "^96.0.0",
     "closure-webpack-plugin": "^2.6.1",
     "copy-webpack-plugin": "4.6.0",
     "eslint": "4.19.1",
