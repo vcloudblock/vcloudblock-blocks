@@ -29,12 +29,11 @@
     "exports-loader": "0.6.3",
     "google-closure-library": "20190301.0.0",
     "imports-loader": "0.6.5",
-    "vcloudblock-blocks": "file:",
     "vcloudblock-l10n": "3.15.0"
   },
   "devDependencies": {
     "async": "2.6.3",
-    "chromedriver": "^126.0.5",
+    "chromedriver": "^114.0.2",
     "copy-webpack-plugin": "4.6.0",
     "eslint": "4.19.1",
     "event-stream": "3.3.5",
