@@ -2,7 +2,7 @@
   "name": "vcloudblock-blocks",
   "version": "0.1.0",
   "description": "vcloudblock Blocks is a library for building creative computing interfaces.",
-  "author": "Massachusetts Institute of Technology",
+  "author": "vcloudblock",
   "license": "Apache-2.0",
   "homepage": "https://github.com/vcloudblock/vcloudblock-blocks#readme",
   "repository": {
@@ -29,7 +29,7 @@
     "exports-loader": "0.6.3",
     "google-closure-library": "20190301.0.0",
     "imports-loader": "0.6.5",
-    "vcloudblock-l10n": "3.15.0"
+    "vcloudblock-l10n": "file://D:/vcloudblock/locallibs/vcloudblock-l10n-3.15.0.tgz"
   },
   "devDependencies": {
     "async": "2.6.3",
