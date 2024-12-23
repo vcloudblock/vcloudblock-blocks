@@ -1,8 +1,8 @@
 /**
  * Visual Blocks Editor
  *
- * Copyright 2021 openblock.cc.
- * https://github.com/openblockcc/openblock-blocks
+ * Copyright 2021 vcloudblock.
+ * https://github.com/vcloudblock/vcloudblock-blocks
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 
 /**
  * @fileoverview Core JavaScript library for Blockly.
- * @author arthurzheng@openblock.cc
+ * @author vcloudblock
  */
 'use strict';
 

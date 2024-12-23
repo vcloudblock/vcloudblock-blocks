@@ -23,12 +23,12 @@ if (!process.env.TX_TOKEN || process.argv.length !== 2) {
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const locales = require('openblock-l10n').default;
-const {txPull} = require('openblock-l10n/lib/transifex.js');
+const locales = require('vcloudblock-l10n').default;
+const {txPull} = require('vcloudblock-l10n/lib/transifex.js');
 
 // Globals
 const PATH_OUTPUT = path.resolve(__dirname, '../msg');
-const PROJECT = 'openblock-editor'
+const PROJECT = 'vcloudblock-editor'
 const RESOURCE = 'blocks';
 const MODE = 'reviewed';
 
